@@ -1,6 +1,6 @@
 # Instaclone
 
-[![Build status](https://dev.azure.com/soen341/Instaclone/_apis/build/status/Instaclone%20-%20Pipeline)](https://dev.azure.com/soen341/Instaclone/_build/latest?definitionId=1)
+[![Build and Deploy](https://github.com/po-trottier/concordia-software-processes/workflows/Build%20and%20Deploy/badge.svg)](https://github.com/po-trottier/concordia-software-processes/actions)
 
 This project is meant to be an Instagram clone and was created for Concordia's SOEN 341 (Software Process) Course.
 
