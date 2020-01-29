@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "description": "Instaclone Master Package",
   "scripts": {
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "install-all": "npm install --force && cd \"./frontend\" && npm install --force && cd \"../functions\" && npm install --force",
+    "install-frontend": "npm install --force && cd \"./frontend\" && npm install --force",
+    "install-functions": "npm install --force && cd \"./functions\" && npm install --force",
+    "lock-frontend": "node ./scripts/npm/lock.js \"./frontend\"",
+    "lock-functions": "node ./scripts/npm/lock.js \"./functions\"",
+    "unlock-frontend": "node ./scripts/npm/unlock.js \"./frontend\"",
+    "unlock-functions": "node ./scripts/npm/unlock.js \"./functions\""
   },
   "repository": {
     "type": "git",

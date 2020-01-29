@@ -19,13 +19,13 @@ This project is meant to be an Instagram clone and was created for Concordia's S
 
 ### Objectives:
 
-- Immitate the main features Instagram offers to users
+- Imitate the main features Instagram offers to users
 - Core features:
     - Being able to see a landing page when i'm not logged in
     - Being able to log in
     - Being able to log in using Google and Facebook
     - Having access to the app in French and in English 
-    - Having a customisable personal profile
+    - Having a customizable personal profile
     - Being able to post a photo
     - Being able to add a description with Hashtags to the post
     - Being able to comment on the post
@@ -39,7 +39,7 @@ This project is meant to be an Instagram clone and was created for Concordia's S
 - Frontend:
     - *Vue.JS*
 - Backend:
-    - *Firebase Functions + Firebase Authentification*
+    - *Firebase Functions + Firebase Authentication*
 - Database:
     - *Firebase Firestore + Firebase Storage*
 - Continuous Integration
@@ -49,7 +49,26 @@ This project is meant to be an Instagram clone and was created for Concordia's S
 - Unit Testing:
     - *Mocha + Chai*
 
+### Useful Commands
+
+- Deploy to Firebase
+    - `npm run deploy`
+- Install All Required Dependencies 
+    - `npm run install-all`
+- Install Front-End Dependencies
+    - `npm run install-frontend`
+- Install Firebase Functions Dependencies
+    - `npm run install-functions`
+- Lock Front-End Environment Variables
+    - `npm run lock-frontend PASSWORD_HERE`
+- Lock Firebase Functions Environment Variables
+    - `npm run lock-functions PASSWORD_HERE`
+- Unlock Front-End Environment Variables
+    - `npm run unlock-frontend PASSWORD_HERE`
+- Unlock Firebase Functions Environment Variables
+    - `npm run unlock-functions PASSWORD_HERE`
+
 ### Useful Links
 
 - [Frontend README](https://github.com/po-trottier/concordia-software-processes/blob/master/frontend/README.md)
-- [Backend README](https://github.com/po-trottier/concordia-software-processes/blob/master/server/README.md)
+- [Backend README](https://github.com/po-trottier/concordia-software-processes/blob/master/functions/README.md)

@@ -3,21 +3,21 @@ const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
 
+// file names
+const encFile = './.env.enc';
+const decFile = './.env';
+
 // algorithm constants
 const hashAlgorithm = 'sha256';
 const cipherAlgorithm = 'aes256';
 
-function encryptFile(filePath, password, dirPath = null) {
+function encryptFile(decryptedFile, encryptedFile, password) {
   // normalize file paths
-  let envDir = path.normalize(__dirname);
-  if (dirPath) {
-    envDir = path.normalize(dirPath);
-  }
-  filePath = path.normalize(filePath);
+  encryptedFile = path.normalize(encryptedFile);
+  decryptedFile = path.normalize(decryptedFile);
 
   // shrink file
-  const encryptedFile = path.join(envDir, '../.env.enc');
-  const fileData = fs.readFileSync(filePath, 'utf8');
+  const fileData = fs.readFileSync(decryptedFile, 'utf8');
   const gzipped = Buffer.from(fileData, 'utf8').toString('base64');
 
   // encrypt
@@ -33,13 +33,13 @@ function encryptFile(filePath, password, dirPath = null) {
   return encryptedFile;
 }
 
-function decryptFile(filePath, envPath, password) {
+function decryptFile(decryptedFile, encryptedFile, password) {
   // normalize file paths
-  const decFile = path.normalize(envPath);
-  filePath = path.normalize(filePath);
+  decryptedFile = path.normalize(decryptedFile);
+  encryptedFile = path.normalize(encryptedFile);
 
   // get file
-  let fileData = Buffer.from(fs.readFileSync(filePath, 'utf8'), 'base64');
+  let fileData = Buffer.from(fs.readFileSync(encryptedFile, 'utf8'), 'base64');
 
   // decryption credentials
   const key = crypto.createHash(hashAlgorithm).update(password).digest();
@@ -52,32 +52,33 @@ function decryptFile(filePath, envPath, password) {
   const decrypted = Buffer.from(gzipped, 'base64').toString('utf8');
 
   // write to decrypted file to .env
-  fs.writeFileSync(decFile, String(decrypted).trim(), 'utf8');
+  fs.writeFileSync(decryptedFile, String(decrypted).trim(), 'utf8');
 
   // return .env path
-  return decFile;
+  return decryptedFile;
 }
 
-function decrypt(password) {
+function decrypt(password, dir) {
   try {
     password = String(password).trim();
 
-    const encryptedFile = path.join(__dirname, '../.env.enc');
-    const envFile = path.join(__dirname, '../.env');
-
-    return decryptFile(encryptedFile, envFile, password);
+    const encryptedFile = path.resolve(dir, encFile);
+    const decryptedFile = path.resolve(dir, decFile);
+    
+    return decryptFile(decryptedFile, encryptedFile, password);
   } catch (error) {
     return null;
   }
 }
 
-function encrypt(password) {
+function encrypt(password, dir) {
   try {
     password = String(password).trim();
+    
+    const encryptedFile = path.resolve(dir, encFile);
+    const decryptedFile = path.resolve(dir, decFile);
 
-    const envFile = path.join(__dirname, '../.env');
-
-    return encryptFile(envFile, password);
+    return encryptFile(decryptedFile, encryptedFile, password);
   } catch (error) {
     return null;
   }
