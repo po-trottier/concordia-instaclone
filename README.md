@@ -11,7 +11,7 @@ This project is meant to be an Instagram clone and was created for Concordia's S
 ### Written by:
 
 - Manar Alchirazi Alsabbagh - **LerouxManar** - *(40058611)*
-- Radley Carpio - **LerouxManar** - *(40074888)*
+- Radley Carpio - **Rad Carpio** - *(40074888)*
 - Stephen Frattaroli - **sfratt** - *(27567634)*
 - Seyedeh Mansoureh Edalati Mirzabeigi - **mansiedi1980** - *(40037283)*
 - Hoda Nourbakhsh - **hodanourbakhsh** - *(40066450)*
