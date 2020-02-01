@@ -12,9 +12,13 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Dependencies
-        run: npm --prefix "frontend" install
+        run: npm run install-frontend
+      - name: Unlock Environment Variables
+        run: npm run unlock-frontend ${{ secrets.ENVIRONMENT_PASSWORD }}
+      - name: Run Unit Tests
+        run: npm run test
       - name: Build for Production
-        run: npm --prefix "frontend" run build
+        run: npm run build
       - name: Archive Artifact
         uses: actions/upload-artifact@master
         with:
@@ -32,6 +36,8 @@ jobs:
         with:
           name: dist
           path: frontend/dist
+      - name: Unlock Environment Variables
+        run: npm run unlock-functions ${{ secrets.ENVIRONMENT_PASSWORD }}
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
