@@ -58,12 +58,9 @@ function decryptFile(decryptedFile, encryptedFile, password) {
   return decryptedFile;
 }
 
-function decrypt(password, dir) {
+function decrypt(password, encryptedFile, decryptedFile) {
   try {
     password = String(password).trim();
-
-    const encryptedFile = path.resolve(dir, encFile);
-    const decryptedFile = path.resolve(dir, decFile);
     
     return decryptFile(decryptedFile, encryptedFile, password);
   } catch (error) {
@@ -71,12 +68,9 @@ function decrypt(password, dir) {
   }
 }
 
-function encrypt(password, dir) {
+function encrypt(password, encryptedFile, decryptedFile) {
   try {
     password = String(password).trim();
-    
-    const encryptedFile = path.resolve(dir, encFile);
-    const decryptedFile = path.resolve(dir, decFile);
 
     return encryptFile(decryptedFile, encryptedFile, password);
   } catch (error) {

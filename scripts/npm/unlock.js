@@ -3,10 +3,10 @@ const { decrypt } = require('../encryption');
 
 let env;
 
-if (!process.argv[2] || !process.argv[3]) {
+if (!process.argv[2] || !process.argv[3] || !process.argv[4]) {
   console.error('Please input the password & env file directory...');
 } else {
-  env = decrypt(process.argv[3], process.argv[2]);
+  env = decrypt(process.argv[4], process.argv[2], process.argv[3]);
 }
 
 if (env) {
