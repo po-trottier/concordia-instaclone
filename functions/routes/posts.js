@@ -7,6 +7,8 @@ const posts = admin.firestore().collection('posts');
 function addToProfile(id, content) {
   const user = users.doc(content.user);
   user.collection('posts').doc(id).set({
+    comments_count: content.comments_count,
+    likes_count: content.likes_count,
     picture: content.picture
   }).then(() => {
     user.update({

@@ -14,6 +14,7 @@ module.exports = {
     'vue/attributes-order': 'off',
     'vue/order-in-components': 'off',
     'vue/require-prop-types': 'off',
+    'no-console': 'off',
     'no-plusplus': 'off',
     'no-param-reassign': 'off',
     'no-underscore-dangle': 'off',
