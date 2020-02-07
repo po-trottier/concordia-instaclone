@@ -1,17 +1,23 @@
 <template>
   <div>
-    <h1>
-      Account
-    </h1>
+    <ProfileInfo />
+    <ProfileGallery />
   </div>
 </template>
 
 <script>
-export default {
+import ProfileInfo from '@/components/Profile/ProfileInfo.vue';
+import ProfileGallery from '@/components/Profile/ProfileGallery.vue';
+
+export default ({
   name: 'Account',
-};
+  components: {
+    ProfileInfo,
+    ProfileGallery,
+  },
+});
 </script>
 
-<style scoped>
+<style lang="stylus" scoped>
 
 </style>
