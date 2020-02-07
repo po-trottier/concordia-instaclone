@@ -1,17 +1,14 @@
 <template>
   <div>
     <h1>
-      Landing
+      404
     </h1>
-    <v-btn :to="{ name: 'feed' }">
-      Go to feed
-    </v-btn>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Landing',
+  name: 'Invalid',
 };
 </script>
 

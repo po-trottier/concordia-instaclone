@@ -14,4 +14,11 @@ admin.initializeApp({
 
 // Add the routes
 const posts = require('./routes/posts');
-exports.posts = functions.https.onRequest(posts.handler);
+exports.posts = functions.firestore.document('posts/{postId}')
+  .onCreate((snapshot, context) => {
+    posts.addToProfile(context.params.postId, snapshot.data());
+  });
+
+// THIS IS AN EXAMPLE OF AN HTTP REQUEST ROUTE
+// const posts = require('./routes/posts');
+// exports.posts = functions.https.onRequest(posts.handler);

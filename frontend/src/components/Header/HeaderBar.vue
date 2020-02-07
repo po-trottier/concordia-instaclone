@@ -10,60 +10,34 @@
         no-gutters
         align="center"
         class="narrow">
-        <div class="py-1 d-flex align-center">
-          <v-img
-            contain
-            width="24"
-            alt="Instagram Logo"
-            src="@/assets/logo.png"
-            class="shrink" />
-          <v-divider
-            vertical
-            class="mx-3" />
-          <v-img
-            contain
-            height="32"
-            alt="Instagram Text Logo"
-            src="@/assets/text-logo.png"
-            class="shrink mt-1" />
-        </div>
+        <app-header-logo />
         <v-spacer />
-        <v-text-field
-          dense
-          flat
-          solo
-          outlined
-          hide-details
-          clearable
-          placeholder="Search"
-          class="small-search mt-1" />
+        <app-header-search />
         <v-spacer />
-        <v-btn icon>
-          <v-icon>mdi-compass-outline</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-heart-outline</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-account-outline</v-icon>
-        </v-btn>
+        <app-header-actions />
       </v-row>
     </v-container>
   </v-app-bar>
 </template>
 
 <script>
+import HeaderLogo from './HeaderLogo.vue';
+import HeaderSearch from './HeaderSearch.vue';
+import HeaderActions from './HeaderActions.vue';
+
 export default {
   name: 'HeaderBar',
+
+  components: {
+    appHeaderLogo: HeaderLogo,
+    appHeaderSearch: HeaderSearch,
+    appHeaderActions: HeaderActions,
+  },
 };
 </script>
 
 <style scoped>
   #header {
     border-bottom: 1px solid #dbdbdb !important;
-  }
-
-  .small-search {
-    max-width: 350px;
   }
 </style>

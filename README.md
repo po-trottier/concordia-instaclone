@@ -24,7 +24,7 @@ This project is meant to be an Instagram clone and was created for Concordia's S
     - Being able to see a landing page when i'm not logged in
     - Being able to log in
     - Being able to log in using Google and Facebook
-    - Having access to the app in French and in English 
+    - Having access to the app in French and in English
     - Having a customizable personal profile
     - Being able to post a photo
     - Being able to add a description with Hashtags to the post
@@ -44,7 +44,7 @@ This project is meant to be an Instagram clone and was created for Concordia's S
     - *Firebase Firestore + Firebase Storage*
 - Continuous Integration
     - *GitHub Actions*
-- Hosting: 
+- Hosting:
     - *Firebase Hosting*
 - Unit Testing:
     - *Mocha + Chai*
@@ -53,7 +53,9 @@ This project is meant to be an Instagram clone and was created for Concordia's S
 
 - Deploy to Firebase
     - `npm run deploy`
-- Install All Required Dependencies 
+- Run Firebase Emulators
+    - `npm run emulate`
+- Install All Required Dependencies
     - `npm run install-all`
 - Install Front-End Dependencies
     - `npm run install-frontend`
