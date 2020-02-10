@@ -1,14 +1,20 @@
 <template>
   <div>
-    <h1>
-      Account
-    </h1>
+    <ProfileInfo />
+    <ProfileGallery />
   </div>
 </template>
 
 <script>
+import ProfileInfo from '@/components/Profile/ProfileInfo.vue';
+import ProfileGallery from '@/components/Profile/ProfileGallery.vue';
+
 export default {
   name: 'Account',
+  components: {
+    ProfileGallery,
+    ProfileInfo,
+  },
 };
 </script>
 
