@@ -1,6 +1,9 @@
 import Invalid from '@/views/404.vue';
 import Landing from '@/views/Landing.vue';
 import Header from '@/components/Header/HeaderBar.vue';
+import LoginPage from '../views/LoginPage.vue';
+import Register from '../views/Register.vue';
+
 
 export default [
   {
@@ -21,6 +24,23 @@ export default [
       default: () => import(/* webpackChunkName: "feed" */ '@/views/Feed.vue'),
     },
   },
+  {
+    path: '/LoginPage',
+    name: 'LoginPage',
+    components: {
+
+      default: () => import(/* webpackChunkName: "feed" */ '@/views/LoginPage.vue'),
+    },
+  },
+  {
+    path: '/Register',
+    name: 'Register',
+    components: {
+
+      default: () => import(/* webpackChunkName: "feed" */ '@/views/Register.vue'),
+    },
+  },
+
   {
     path: '/account',
     name: 'account',
