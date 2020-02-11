@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ProfileInfo />
-    <ProfileGallery />
+    <app-profile-info />
+    <app-profile-gallery />
   </div>
 </template>
 
@@ -12,12 +12,8 @@ import ProfileGallery from '@/components/Profile/ProfileGallery.vue';
 export default {
   name: 'Account',
   components: {
-    ProfileGallery,
-    ProfileInfo,
+    appProfileInfo: ProfileInfo,
+    appProfileGallery: ProfileGallery,
   },
 };
 </script>
-
-<style scoped>
-
-</style>

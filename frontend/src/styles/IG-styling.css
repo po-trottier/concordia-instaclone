@@ -1,0 +1,23 @@
+.sm_font {
+
+    font-weight: 400;
+    font-size: 1.03rem;
+}
+
+.md_font {
+
+    font-weight: 550;
+    font-size: 1.03rem;
+}
+
+.lg_font {
+
+    font-weight: 400;
+    font-size: 1.75rem;
+}
+
+.gallery-item {
+    position: relative;
+    color: white;
+    cursor: pointer;
+}

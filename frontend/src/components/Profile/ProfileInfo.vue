@@ -1,24 +1,27 @@
 <template>
   <v-container>
     <v-row class="narrow mt-9 mb-9">
-      <v-flex
-        xs4
-        sm4
-        md4
-        lg4
-        xl4>
+      <v-col
+        cols="12"
+        xs="4"
+        sm="4"
+        md="4"
+        lg="4"
+        xl="4">
         <div
           align="center"
-          class="mr-3 mt-2">
-          <v-avatar size="150" class="avatar">
+          class="mr-3 mt-1">
+          <v-avatar
+            size="150"
+            class="avatar">
             <v-img
               src="@/assets/account-placeholder.png" />
           </v-avatar>
         </div>
-      </v-flex>
-      <v-flex>
-        <v-col>
-          <v-flex>
+      </v-col>
+      <v-col>
+        <v-col class="mt-n2">
+          <v-row>
             <span class="lg_font">
               radleycaprio
             </span>
@@ -26,64 +29,40 @@
               small
               depressed
               outlined
-              class="ml-5 mt-n3">
+              :to="{ name: 'edit' }"
+              class="ml-5 mt-1">
               <span class="editprofile">
                 Edit Profile
               </span>
             </v-btn>
-          </v-flex>
-          <v-flex class="my-4">
-              <span class="sm_font mr-8">
-                 <span class="md_font">16</span> posts
-              </span>
-              <span class="sm_font mr-8">
-                 <span class="md_font">341</span> followers
-              </span>
-              <span class="sm_font mr-8">
-                 <span class="md_font">354</span> following
-              </span>
-          </v-flex>
-          <v-flex class="md_font">
+          </v-row>
+          <v-row class="my-4">
+            <span class="sm_font mr-8">
+              <span class="md_font">16</span> posts
+            </span>
+            <span class="sm_font mr-8">
+              <span class="md_font">341</span> followers
+            </span>
+            <span class="sm_font mr-8">
+              <span class="md_font">354</span> following
+            </span>
+          </v-row>
+          <v-row class="md_font">
             Radley Carpio
-          </v-flex>
-          <v-flex class="sm_font">
+          </v-row>
+          <v-row class="sm_font">
             This is my bio.
-          </v-flex>
+          </v-row>
         </v-col>
-      </v-flex>
+      </v-col>
     </v-row>
-    <v-divider class="narrow"/>
+    <v-divider class="narrow" />
   </v-container>
 </template>
-
 <script>
+import '@/styles/IG-styling.css';
 
 export default ({
-  name: 'ProfileInfo',
+  name: 'ProfilEInfo',
 });
 </script>
-
-<style scoped>
-
-.sm_font {
-    
-    font-weight: 400;
-    font-size: 1.03rem;
-    font-family: Arial;
-}
-
-.md_font {
-
-    font-weight: 550;
-    font-size: 1.03rem;
-    font-family: Arial;
-}
-
-.lg_font {
-
-    font-weight: 400;
-    font-size: 1.75rem;
-    font-family: Arial;
-}
-
-</style>

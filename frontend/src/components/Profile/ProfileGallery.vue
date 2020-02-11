@@ -5,17 +5,28 @@
       class="narrow mt-4">
       <v-col
         cols="12"
+        xs="4"
+        sm="4"
         md="4"
+        lg="4"
+        xl="4"
         v-for="item in 13"
         :key="item.id">
         <div class="gallery-item ma-3">
-          <v-img src="@/assets/account-placeholder.png" />
+          <v-img
+            aspect-ratio="1"
+            src="@/assets/account-placeholder.png" />
           <div class="gallery-item-info">
-            <v-icon class="icon">
+            <v-icon
+              class="mr-1"
+              color="white">
               mdi-heart
             </v-icon>
-            <span class="likes">100</span>
-            <v-icon class="icon">
+            <span class="mr-6">100</span>
+            <v-icon
+              class="mr-1"
+              color="white"
+              style="transform: scaleX(-1)">
               mdi-chat
             </v-icon>
             <span>100</span>
@@ -25,28 +36,14 @@
     </v-row>
   </v-container>
 </template>
-
 <script>
+import '@/styles/IG-styling.css';
+
 export default ({
   name: 'ProfileGallery',
-  data() {
-    return {
-
-      gallery: [
-
-      ],
-    };
-  },
 });
 </script>
-
 <style>
-
-.gallery-item {
-    position: relative;
-    color: #fff;
-    cursor: pointer;
-}
 
 .gallery-item:hover .gallery-item-info,
 .gallery-item:focus .gallery-item-info {
@@ -66,20 +63,4 @@ export default ({
     font-weight: 600;
 }
 
-.likes {
-    margin-right: 2.0rem;
-}
-
-.container {
-  position: relative;
-}
-
-.icon {
-    -webkit-text-fill-color: #fff;
-    margin-right: 0.3rem;
-    transform: scaleX(-1);
-    -moz-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    -ms-transform: scaleX(-1);
-}
 </style>
