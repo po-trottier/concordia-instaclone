@@ -14,6 +14,14 @@ export default [
     component: Landing,
   },
   {
+    path: '/edit',
+    name: 'edit',
+    components: {
+      header: Header,
+      default: () => import(/* webpackChunkName: "edit" */ '@/views/Edit.vue'),
+    },
+  },
+  {
     path: '/feed',
     name: 'feed',
     components: {
@@ -22,11 +30,11 @@ export default [
     },
   },
   {
-    path: '/account',
-    name: 'account',
+    path: '/user',
+    name: 'user',
     components: {
       header: Header,
-      default: () => import(/* webpackChunkName: "account" */ '@/views/Account.vue'),
+      default: () => import(/* webpackChunkName: "user" */ '@/views/User.vue'),
     },
   },
   {

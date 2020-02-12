@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1>
-      Account
+      Edit
     </h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Account',
+  name: 'Edit',
 };
 </script>
 
