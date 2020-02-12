@@ -1,0 +1,23 @@
+.narrow {
+    max-width: 950px !important;
+    margin: 0 auto !important;
+  }
+  
+
+.sm-font {
+    font-weight: 400;
+    font-size: 1.03rem;
+}
+.md-font {
+    font-weight: 550;
+    font-size: 1.03rem;
+}
+.lg-font {
+
+    font-weight: 400;
+    font-size: 1.75rem;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
