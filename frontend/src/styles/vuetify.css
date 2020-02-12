@@ -1,5 +1,6 @@
 .v-application a {
   text-decoration: none !important;
+  transition: ease 0.3s;
 }
 
 .theme--light.v-divider {

@@ -1,23 +1,43 @@
 .narrow {
-    max-width: 950px !important;
-    margin: 0 auto !important;
-  }
-  
-
+  max-width: 900px !important;
+  margin: 0 auto !important;
+}
+.xs-font {
+  font-weight: 400;
+  font-size: 0.8rem;
+}
 .sm-font {
-    font-weight: 400;
-    font-size: 1.03rem;
+  font-weight: 400;
+  font-size: 1rem;
 }
 .md-font {
-    font-weight: 550;
-    font-size: 1.03rem;
+  font-weight: 500;
+  font-size: 1rem;
 }
 .lg-font {
-
-    font-weight: 400;
-    font-size: 1.75rem;
+  font-weight: 400;
+  font-size: 1.75rem;
 }
-
 .pointer:hover {
     cursor: pointer;
+}
+
+.show-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 599px) {
+  .show-mobile {
+    display: flex;
+  }
+
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  .hide-tablet {
+    display: none !important;
+  }
 }

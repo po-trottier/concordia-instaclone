@@ -11,9 +11,11 @@
     "test": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "clone-deep": "^4.0.1",
     "core-js": "^3.4.4",
     "firebase": "^7.7.0",
     "register-service-worker": "^1.6.2",
+    "timeago.js": "^4.0.2",
     "vue": "^2.6.10",
     "vue-i18n": "^8.0.0",
     "vue-router": "^3.1.3",

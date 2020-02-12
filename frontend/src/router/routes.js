@@ -30,11 +30,19 @@ export default [
     },
   },
   {
-    path: '/user',
+    path: '/user/:uid',
     name: 'user',
     components: {
       header: Header,
       default: () => import(/* webpackChunkName: "user" */ '@/views/User.vue'),
+    },
+  },
+  {
+    path: '/upload',
+    name: 'upload',
+    components: {
+      header: Header,
+      default: () => import(/* webpackChunkName: "upload" */ '@/views/Upload.vue'),
     },
   },
   {
