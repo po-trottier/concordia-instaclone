@@ -1,13 +1,17 @@
 <template>
   <div>
-    <v-avatar
-      size="32"
-      class="mr-2">
-      <v-img :src="profile" />
-    </v-avatar>
-    <span>
-      {{ username }}
-    </span>
+    <router-link :to="{ name: 'profile', params: { uid: user } }">
+      <v-avatar
+        size="32"
+        class="mr-2">
+        <v-img :src="profile" />
+      </v-avatar>
+      <span
+        class="font-weight-regular"
+        style="font-size: 1rem">
+        {{ username }}
+      </span>
+    </router-link>
   </div>
 </template>
 
@@ -17,6 +21,10 @@ export default {
 
   props: {
     profile: {
+      type: String,
+      required: true,
+    },
+    user: {
       type: String,
       required: true,
     },

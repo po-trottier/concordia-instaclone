@@ -5,6 +5,7 @@
     class="mb-12">
     <v-card-title>
       <app-post-header
+        :user="content.user"
         :username="content.username"
         :profile="profile" />
     </v-card-title>
