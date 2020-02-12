@@ -5,7 +5,7 @@
     flat
     height="75"
     color="white">
-    <v-container>
+    <v-container class="px-0">
       <v-row
         no-gutters
         align="center"

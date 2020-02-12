@@ -1,13 +1,15 @@
 <template>
   <div>
-    <router-link :to="{ name: 'profile', params: { uid: user } }">
+    <router-link
+      :to="{ name: 'user', params: { uid: user } }"
+      class="black--text">
       <v-avatar
         size="32"
         class="mr-2">
         <v-img :src="profile" />
       </v-avatar>
       <span
-        class="font-weight-regular"
+        class="sm-text"
         style="font-size: 1rem">
         {{ username }}
       </span>

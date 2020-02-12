@@ -5,7 +5,7 @@
       class="narrow mt-4">
       <v-col
         cols="12"
-        md="6"
+        sm="6"
         lg="4"
         v-for="item in 13"
         :key="item.id">

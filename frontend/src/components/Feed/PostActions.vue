@@ -3,7 +3,9 @@
     <v-row
       no-gutters
       class="mb-2">
-      <v-btn icon>
+      <v-btn
+        icon
+        class="mr-1">
         <v-icon>
           mdi-heart-outline
         </v-icon>
@@ -15,7 +17,9 @@
       </v-btn>
     </v-row>
     <v-row no-gutters>
-      <p>{{ likes.toFixed(0) }} likes</p>
+      <p class="ml-3">
+        {{ likes.toFixed(0) }} likes
+      </p>
     </v-row>
   </div>
 </template>

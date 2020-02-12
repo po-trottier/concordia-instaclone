@@ -30,8 +30,8 @@ export default [
     },
   },
   {
-    path: '/profile/:uid',
-    name: 'profile',
+    path: '/user/:uid',
+    name: 'user',
     components: {
       header: Header,
       default: () => import(/* webpackChunkName: "user" */ '@/views/User.vue'),

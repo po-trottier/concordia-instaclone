@@ -11,7 +11,7 @@
     append-icon=""
     color="dark"
     placeholder="Search"
-    class="small-search mt-1" />
+    class="small-search" />
 </template>
 
 <script>
