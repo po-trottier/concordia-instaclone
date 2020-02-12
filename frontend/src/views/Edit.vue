@@ -1,29 +1,12 @@
 <template>
-  <div>
-<<<<<<< HEAD:frontend/src/views/Account.vue
-    <app-profile-info />
-    <app-profile-gallery />
-=======
-    <h1>
-      Edit
-    </h1>
->>>>>>> master:frontend/src/views/Edit.vue
-  </div>
+  <app-edit-card />
 </template>
 
 <script>
-import ProfileInfo from '@/components/Profile/ProfileInfo.vue';
-import ProfileGallery from '@/components/Profile/ProfileGallery.vue';
+import EditCard from '@/components/EditProfile/EditCard.vue';
 
-export default {
-<<<<<<< HEAD:frontend/src/views/Account.vue
-  name: 'Account',
-  components: {
-    appProfileInfo: ProfileInfo,
-    appProfileGallery: ProfileGallery,
-  },
-=======
+export default ({
   name: 'Edit',
->>>>>>> master:frontend/src/views/Edit.vue
-};
+  components: { appEditCard: EditCard },
+});
 </script>
