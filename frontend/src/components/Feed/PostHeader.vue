@@ -9,7 +9,7 @@
         <v-img :src="profile" />
       </v-avatar>
       <span
-        class="sm-text"
+        class="sm-font font-weight-medium"
         style="font-size: 1rem">
         {{ username }}
       </span>

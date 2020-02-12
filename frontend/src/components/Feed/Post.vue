@@ -15,8 +15,8 @@
         width="100%"
         aspect-ratio="1" />
     </v-card-text>
-    <v-card-actions class="pa-4">
-      <app-post-actions :likes="content.likes_count" />
+    <v-card-actions class="px-4">
+      <app-post-actions :content="content" />
     </v-card-actions>
   </v-card>
 </template>

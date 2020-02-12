@@ -1,14 +1,18 @@
 .narrow {
-  max-width: 950px !important;
+  max-width: 900px !important;
   margin: 0 auto !important;
+}
+.xs-font {
+  font-weight: 400;
+  font-size: 0.8rem;
 }
 .sm-font {
   font-weight: 400;
-  font-size: 1.03rem;
+  font-size: 1rem;
 }
 .md-font {
-  font-weight: 550;
-  font-size: 1.03rem;
+  font-weight: 500;
+  font-size: 1rem;
 }
 .lg-font {
   font-weight: 400;
