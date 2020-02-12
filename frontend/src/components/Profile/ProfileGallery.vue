@@ -1,18 +1,17 @@
 <template>
-  <v-container align="center">
+  <v-container>
     <v-row
       no-gutters
       class="narrow mt-4">
       <v-col
         cols="12"
-        xs="4"
-        sm="4"
-        md="4"
+        md="6"
         lg="4"
-        xl="4"
         v-for="item in 13"
         :key="item.id">
-        <div class="gallery-item ma-3">
+        <div
+          class="gallery-item ma-3"
+          style="font-size: 1.2rem; font-weight: 600;">
           <v-img
             aspect-ratio="1"
             src="@/assets/account-placeholder.png" />
@@ -44,7 +43,6 @@ export default ({
 });
 </script>
 <style>
-
 .gallery-item:hover .gallery-item-info,
 .gallery-item:focus .gallery-item-info {
     display: flex;
@@ -56,11 +54,7 @@ export default ({
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
 }
-
 .gallery-item-info {
     display: none;
-    font-size: 1.2rem;
-    font-weight: 600;
 }
-
 </style>
