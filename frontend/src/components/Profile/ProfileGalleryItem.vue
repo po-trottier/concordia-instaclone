@@ -8,7 +8,6 @@
     <div class="gallery-info">
       <span class="pointer mr-6">
         <v-icon
-          class="mr-1"
           color="white">
           mdi-heart
         </v-icon>
@@ -16,9 +15,9 @@
       </span>
       <span class="pointer">
         <v-icon
-          class="mr-1"
+          style="transform: scaleX(-1)"
           color="white">
-          mdi-comment
+          mdi-chat
         </v-icon>
         100
       </span>
