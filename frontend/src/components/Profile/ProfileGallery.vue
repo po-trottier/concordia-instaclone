@@ -5,6 +5,7 @@
       class="narrow mt-4">
       <v-col
         cols="12"
+<<<<<<< HEAD
         md="6"
         lg="4"
         v-for="item in 13"
@@ -31,10 +32,18 @@
             <span>100</span>
           </div>
         </div>
+=======
+        sm="6"
+        lg="4"
+        v-for="item in 13"
+        :key="item.id">
+        <app-gallery-item />
+>>>>>>> master
       </v-col>
     </v-row>
   </v-container>
 </template>
+<<<<<<< HEAD
 <script>
 import '@/styles/IG-styling.css';
 
@@ -58,3 +67,17 @@ export default ({
     display: none;
 }
 </style>
+=======
+
+<script>
+import ProfileGalleryItem from './ProfileGalleryItem.vue';
+
+export default ({
+  name: 'ProfileGallery',
+
+  components: {
+    appGalleryItem: ProfileGalleryItem,
+  },
+});
+</script>
+>>>>>>> master

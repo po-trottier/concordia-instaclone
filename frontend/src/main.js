@@ -15,7 +15,7 @@ import vuetify from '@/plugins/vuetify';
 import '@/registerServiceWorker';
 
 // Import the Stylesheets
-import '@/styles/layout.css';
+import '@/styles/general.css';
 import '@/styles/vuetify.css';
 
 // Initialize Firebase

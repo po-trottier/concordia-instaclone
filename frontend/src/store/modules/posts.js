@@ -1,4 +1,19 @@
 import firebase from 'firebase';
+import clone from 'clone-deep';
+
+// TEMP
+const defaultPost = {
+  comment_count: 0,
+  description: 'This is the default description',
+  id: null,
+  likes_count: 0,
+  picture: null,
+  tags: ['test'],
+  timestamp: null,
+  user: 'kXqYLYAgjiXwNiIn0bdfv1samvA2',
+  user_picture: 'gs://soen341-instaclone.appspot.com/users/kXqYLYAgjiXwNiIn0bdfv1samvA2.jpg',
+  username: 'test',
+};
 
 const state = {
   posts: [],
@@ -15,8 +30,11 @@ const mutations = {
 };
 
 const actions = {
-  queryPosts: (context) => {
-    firebase.firestore().collection('posts').get()
+  queryPosts: (context, payload) => {
+    // TODO Payload should be a list of the users followed so we can query the proper posts
+    console.log(payload);
+
+    firebase.firestore().collection('posts').orderBy('timestamp', 'desc').get()
       .then((snapshot) => {
         const results = [];
         snapshot.forEach((doc) => {
@@ -28,6 +46,54 @@ const actions = {
         console.error(err);
       });
   },
+
+  addPost: (context, payload) => new Promise((resolve, reject) => {
+    const results = clone(context.getters.getPosts);
+
+    // TODO Payload should be a properly constructed post
+    const post = clone(defaultPost);
+
+    // Rename File to Unique ID
+    const name = (new Date()).getTime().toString(32)
+      + Math.floor(1E10 * Math.random()).toString(32);
+    const extension = payload.file.name.split('.').pop();
+    const file = new File(
+      [payload.file],
+      `${name}.${extension}`,
+      { type: payload.file.type },
+    );
+
+    // Upload Photo
+    firebase.storage().ref().child(`posts/${name}.${extension}`).put(file)
+      .then(({ ref }) => {
+        console.log('Picture was Uploaded!');
+
+        // Set important values for default post
+        // eslint-disable-next-line new-cap
+        post.timestamp = firebase.firestore.FieldValue.serverTimestamp();
+        post.picture = `gs://${ref.bucket}/${ref.fullPath}`;
+        post.id = name;
+
+        // Add the post to the Database
+        firebase.firestore().collection('posts').doc(name).set(post)
+          .then(() => {
+            console.log('Post was added to the Database!');
+
+            // Add the post at the top of the current posts
+            results.splice(0, 0, defaultPost);
+            context.commit('mutatePosts', results);
+
+            // Resolve the Promise
+            resolve();
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  }),
 };
 
 export default {
