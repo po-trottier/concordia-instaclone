@@ -1,15 +1,14 @@
 <template>
-  <div>
-    <h1>
-      Edit
-    </h1>
-  </div>
+  <app-edit-card />
 </template>
 
 <script>
-export default {
+import EditCard from '@/components/EditProfile/EditCard.vue';
+
+export default ({
   name: 'Edit',
-};
+  components: { appEditCard: EditCard },
+});
 </script>
 
 <style scoped>

@@ -3,12 +3,12 @@
     class="gallery-item white--text ma-3"
     style="font-size: 1.2rem; font-weight: 600; position: relative;">
     <v-img
+      @focus="log"
       aspect-ratio="1"
       src="@/assets/account-placeholder.png" />
     <div class="gallery-info">
       <span class="pointer mr-6">
         <v-icon
-          class="mr-1"
           color="white">
           mdi-heart
         </v-icon>
@@ -16,7 +16,6 @@
       </span>
       <span class="pointer">
         <v-icon
-          class="mr-1"
           color="white">
           mdi-comment
         </v-icon>
@@ -29,6 +28,12 @@
 <script>
 export default ({
   name: 'ProfileGalleryItem',
+  methods: {
+
+    log() {
+      console.log('FUCK YEAH');
+    },
+  },
 });
 </script>
 

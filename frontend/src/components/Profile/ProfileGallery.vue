@@ -4,9 +4,7 @@
       no-gutters
       class="narrow mt-4">
       <v-col
-        cols="12"
-        sm="6"
-        lg="4"
+        cols="4"
         v-for="item in 13"
         :key="item.id">
         <app-gallery-item />
@@ -20,7 +18,6 @@ import ProfileGalleryItem from './ProfileGalleryItem.vue';
 
 export default ({
   name: 'ProfileGallery',
-
   components: {
     appGalleryItem: ProfileGalleryItem,
   },
