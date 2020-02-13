@@ -10,9 +10,9 @@ const defaultPost = {
   picture: null,
   tags: ['test'],
   timestamp: null,
-  user: 'kXqYLYAgjiXwNiIn0bdfv1samvA2',
-  user_picture: 'gs://soen341-instaclone.appspot.com/users/kXqYLYAgjiXwNiIn0bdfv1samvA2.jpg',
-  username: 'test',
+  user: '',
+  user_picture: '',
+  username: '',
 };
 
 const state = {
@@ -69,10 +69,15 @@ const actions = {
         console.log('Picture was Uploaded!');
 
         // Set important values for default post
-        // eslint-disable-next-line new-cap
         post.timestamp = firebase.firestore.FieldValue.serverTimestamp();
         post.picture = `gs://${ref.bucket}/${ref.fullPath}`;
         post.id = name;
+
+        // Get the current user's info
+        const user = context.rootGetters['auth/user'];
+        post.user = user.uid;
+        post.user_picture = user.picture;
+        post.username = user.username;
 
         // Add the post to the Database
         firebase.firestore().collection('posts').doc(name).set(post)

@@ -1,25 +1,27 @@
 <template>
-  <v-container class="mt-10 edit">
+  <v-container class="mt-10">
     <v-card
       class="narrow"
       outlined
       flat>
-      <v-row no-gutters>
-        <v-col
-          col="9"
-          md="3">
-          <v-row
-            class="ml-7 mt-4"
-            style="font-size: 1.05rem; font-weight: 550;">
-            Edit Profile
-          </v-row>
-        </v-col>
-        <v-divider vertical />
-        <v-col
-          class="py-4 px-7">
-          <app-user-info />
-        </v-col>
-      </v-row>
+      <v-card-text class="px-0 py-8">
+        <v-row no-gutters>
+          <v-col
+            style="border-right: solid 1px rgba(0,0,0,0.2);"
+            class="px-6 hide-mobile"
+            cols="12"
+            sm="3">
+            <h3>
+              Edit Profile
+            </h3>
+          </v-col>
+          <v-col
+            cols="12"
+            sm="9">
+            <app-user-info />
+          </v-col>
+        </v-row>
+      </v-card-text>
     </v-card>
   </v-container>
 </template>
@@ -29,6 +31,9 @@ import UserInfo from './UserInfo.vue';
 
 export default ({
   name: 'EditCard',
-  components: { appUserInfo: UserInfo },
+
+  components: {
+    appUserInfo: UserInfo,
+  },
 });
 </script>

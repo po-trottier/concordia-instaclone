@@ -8,7 +8,19 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'App',
+
+  methods: {
+    ...mapActions('auth', ['setUser']),
+  },
+
+  created() {
+    if (localStorage.user) {
+      this.setUser(JSON.parse(localStorage.user));
+    }
+  },
 };
 </script>
