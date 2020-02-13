@@ -86,7 +86,9 @@
         <v-textarea
           outlined
           no-resize
-          hide-details
+          persistent-hint
+          :hint="bio.trim().length + ' / 100'"
+          :rules="bioRules"
           type="text"
           class="my-2"
           v-model="bio" />
@@ -118,6 +120,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import isUrl from 'is-url';
+
 export default ({
   name: 'EditForm',
 
@@ -127,13 +132,45 @@ export default ({
       username: '',
       website: '',
       bio: '',
+      bioRules: [
+        bio => (bio ? bio.trim().length <= 100 : true) || 'Bio needs to be less than 100 characters long',
+      ],
     };
+  },
+
+  computed: {
+    ...mapGetters('auth', ['user']),
   },
 
   methods: {
     submit() {
-      console.log(this.name, this.username, this.bio);
+      this.validate();
+      console.log({
+        name: this.name, username: this.username, website: this.website, bio: this.bio,
+      });
     },
+
+    validate() {
+      this.name = this.name.trim();
+      this.username = this.username.trim().toLowerCase().replace(' ', '-');
+      this.website = this.website.trim().toLowerCase();
+      this.bio = this.bio.trim();
+
+      if (this.website && this.website.substring(0, 8) !== 'https://' && this.website.substring(0, 7) !== 'http://') {
+        this.website = `https://${this.website}`;
+      }
+
+      if (!isUrl(this.website)) {
+        this.website = null;
+      }
+    },
+  },
+
+  created() {
+    this.name = this.user.name;
+    this.username = this.user.username;
+    this.website = this.user.website;
+    this.bio = this.user.bio;
   },
 });
 </script>

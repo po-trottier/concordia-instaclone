@@ -1,31 +1,48 @@
 <template>
   <v-container>
-    <h1 class="mb-6">
-      Upload
-    </h1>
-    <v-img
-      :src="data"
-      v-if="data"
-      contain=""
-      max-height="300"
-      class="my-10" />
-    <v-file-input
-      v-model="file"
-      style="max-width: 500px;"
-      label="Select an image"
-      accept="image/*"
-      solo
-      clearable
-      dense
-      single-line
-      show-size />
-    <v-btn
-      :disabled="!file"
-      :loading="progress"
-      @click="upload"
-      color="primary">
-      Upload
-    </v-btn>
+    <v-card
+      max-width="500"
+      class="mx-auto mt-6">
+      <v-card-title class="justify-center">
+        <h1 class="text-center my-6">
+          Create a Post
+        </h1>
+      </v-card-title>
+      <v-card-text>
+        <v-img
+          :src="data"
+          v-if="data"
+          style="border-radius: 4px;"
+          contain
+          class="mb-10" />
+        <v-file-input
+          v-model="file"
+          class="mb-6"
+          label="Select an image"
+          accept="image/*"
+          hint="Maximum File Size: 5 MB"
+          :rules="rules"
+          prepend-icon=""
+          persistent-hint
+          solo
+          outlined
+          flat
+          clearable
+          dense
+          single-line
+          show-size />
+        <v-btn
+          large
+          block
+          depressed
+          :disabled="file ? file.size > 5242880 : true"
+          :loading="progress"
+          @click="upload"
+          color="primary">
+          Upload
+        </v-btn>
+      </v-card-text>
+    </v-card>
   </v-container>
 </template>
 
@@ -40,6 +57,9 @@ export default {
       progress: false,
       file: null,
       data: null,
+      rules: [
+        file => (file ? file.size <= 5242880 : true) || 'File must be smaller than 5 MB',
+      ],
     };
   },
 
@@ -49,6 +69,10 @@ export default {
 
   watch: {
     file() {
+      if (!this.file) {
+        this.data = null;
+        return;
+      }
       this.data = URL.createObjectURL(this.file);
     },
   },

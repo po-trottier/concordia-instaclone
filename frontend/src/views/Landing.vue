@@ -4,57 +4,59 @@
     color="light"
     tile>
     <v-container>
-      <v-card
-        elevation="6"
-        class="pa-6 mx-auto my-12"
-        style="max-width: 500px;">
-        <v-card-title>
-          <h1 class="mb-6">
-            Welcome to Instaclone
-          </h1>
-        </v-card-title>
-        <v-card-text>
-          <v-text-field
-            v-model="email"
-            class="mb-6"
-            outlined
-            rounded
-            hide-details
-            type="email"
-            placeholder="E-mail" />
-          <v-text-field
-            v-model="password"
-            outlined
-            rounded
-            hide-details
-            type="password"
-            placeholder="Password" />
-        </v-card-text>
-        <v-card-actions>
-          <v-col class="text-center">
-            <v-btn
-              large
-              block
-              depressed
+      <v-form @submit.prevent="login">
+        <v-card
+          elevation="6"
+          class="pa-6 mx-auto my-12"
+          style="max-width: 500px;">
+          <v-card-title>
+            <h1 class="mb-6 text-center">
+              Welcome to Instaclone
+            </h1>
+          </v-card-title>
+          <v-card-text>
+            <v-text-field
+              v-model="email"
+              class="mb-6"
+              outlined
               rounded
-              @click="login"
-              :loading="progress"
-              :disabled="!valid"
-              color="primary"
-              class="mb-4">
-              Sign In
-            </v-btn>
-            <v-btn
-              large
-              block
-              text
+              hide-details
+              type="email"
+              placeholder="E-mail" />
+            <v-text-field
+              v-model="password"
+              outlined
               rounded
-              :to="{ name: 'signup' }">
-              Create an Account
-            </v-btn>
-          </v-col>
-        </v-card-actions>
-      </v-card>
+              hide-details
+              type="password"
+              placeholder="Password" />
+          </v-card-text>
+          <v-card-actions>
+            <v-col class="text-center">
+              <v-btn
+                large
+                block
+                depressed
+                rounded
+                type="submit"
+                :loading="progress"
+                :disabled="!valid"
+                color="primary"
+                class="mb-4">
+                Sign In
+              </v-btn>
+              <v-btn
+                large
+                block
+                text
+                rounded
+                :to="{ name: 'signup' }">
+                Create an Account
+              </v-btn>
+            </v-col>
+          </v-card-actions>
+        </v-card>
+      </v-form>
     </v-container>
   </v-sheet>
 </template>
@@ -90,16 +92,24 @@ export default {
       this.progress = true;
       this.$firebase.auth().setPersistence(this.$firebase.auth.Auth.Persistence.LOCAL)
         .then(() => {
-          this.$firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-            .then(({ user }) => {
-              this.getUser(user.uid);
-              setTimeout(() => {
-                this.progress = false;
+          this.$firebase.auth().signInWithEmailAndPassword(
+            this.email.trim().toLowerCase(),
+            this.password.trim(),
+          ).then(({ user }) => {
+            this.getUser(user.uid)
+              .then(() => {
                 this.$router.replace({ name: 'feed' });
-              }, 500);
-            });
+              })
+              .catch((err) => {
+                console.error(err);
+              })
+              .finally(() => {
+                this.progress = false;
+              });
+          });
         })
         .catch((err) => {
+          this.progress = false;
           console.error(err);
         });
     },

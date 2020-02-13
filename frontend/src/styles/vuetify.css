@@ -1,3 +1,7 @@
+.v-application h1 {
+  line-height: 2.5rem;
+}
+
 .v-application a {
   text-decoration: none !important;
   transition: ease 0.3s;
