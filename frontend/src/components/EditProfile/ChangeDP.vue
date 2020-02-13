@@ -25,11 +25,12 @@
           </v-flex>
           <v-divider />
           <v-row>
-            <v-input-file
+            <input
+              type="file"
               ref="fileInput"
               accept="image/*"
               style="display: none;"
-              @change="upload" />
+              @change="upload">
             <v-btn
               small
               depressed
@@ -73,8 +74,6 @@
 </template>
 
 <script>
-// style="color: #3399ff;"
-
 import { mapActions } from 'vuex';
 
 export default ({
