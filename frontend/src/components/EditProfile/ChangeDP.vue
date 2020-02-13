@@ -18,11 +18,11 @@
         width="400"
         align="center">
         <v-col>
-          <v-flex class="mx-10 my-6">
+          <v-row class="mx-10 my-6">
             <span class="md-font">
               Change Profile Photo
             </span>
-          </v-flex>
+          </v-row>
           <v-divider />
           <v-row>
             <input
