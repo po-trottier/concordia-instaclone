@@ -1,5 +1,6 @@
 <template>
   <v-row
+    align="center"
     justify="center"
     justify-sm="start">
     <p class="lg-font my-auto">
@@ -13,7 +14,7 @@
         depressed
         outlined
         color="dark lighten-4"
-        class="ml-5 hide-mobile"
+        class="ml-6 hide-mobile"
         :to="{ name: 'edit' }">
         <span>
           Edit Profile
@@ -29,6 +30,13 @@
         </v-icon>
       </v-btn>
     </div>
+    <v-btn
+      v-else
+      depressed
+      class="ml-6"
+      color="primary">
+      Follow
+    </v-btn>
   </v-row>
 </template>
 
