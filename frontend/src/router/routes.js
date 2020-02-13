@@ -30,6 +30,13 @@ export default [
     },
   },
   {
+    path: '/signup',
+    name: 'signup',
+    components: {
+      default: () => import(/* webpackChunkName: "signup" */ '@/views/SignUp.vue'),
+    },
+  },
+  {
     path: '/user/:uid',
     name: 'user',
     components: {
