@@ -3,36 +3,56 @@
     class="gallery-item white--text ma-3"
     style="font-size: 1.2rem; font-weight: 600; position: relative;">
     <v-img
-      @focus="log"
       aspect-ratio="1"
-      src="@/assets/account-placeholder.png" />
+      :src="image" />
     <div class="gallery-info">
       <span class="pointer mr-6">
         <v-icon
           color="white">
           mdi-heart
         </v-icon>
-        100
+        {{ item.likes_count }}
       </span>
       <span class="pointer">
         <v-icon
           color="white">
           mdi-comment
         </v-icon>
-        100
+        {{ item.comments_count }}
       </span>
     </div>
   </div>
 </template>
 
 <script>
+import placeholder from '@/assets/account-placeholder.png';
+
 export default ({
   name: 'ProfileGalleryItem',
-  methods: {
 
-    log() {
-      console.log('FUCK YEAH');
+  props: {
+    item: {
+      type: Object,
+      required: true,
     },
+  },
+
+  data() {
+    return {
+      image: placeholder,
+    };
+  },
+
+  created() {
+    const storage = this.$firebase.storage();
+    const imageRef = storage.refFromURL(this.item.picture);
+    imageRef.getDownloadURL()
+      .then((url) => {
+        this.image = url;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 });
 </script>

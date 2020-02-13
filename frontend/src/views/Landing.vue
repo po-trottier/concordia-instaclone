@@ -60,6 +60,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'Landing',
   data() {
@@ -71,6 +73,8 @@ export default {
   },
 
   computed: {
+    ...mapGetters('auth', ['loggedIn']),
+
     valid() {
       return this.email
         && this.password
@@ -80,15 +84,29 @@ export default {
   },
 
   methods: {
+    ...mapActions('auth', ['getUser']),
+
     login() {
       this.progress = true;
-      this.$firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-        .then(({ user }) => {
-          this.progress = false;
-          console.log(user.uid);
-          this.$router.replace({ name: 'feed' });
+      this.$firebase.auth().setPersistence(this.$firebase.auth.Auth.Persistence.LOCAL)
+        .then(() => {
+          this.$firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+            .then(({ user }) => {
+              this.progress = false;
+              this.getUser(user.uid);
+              this.$router.replace({ name: 'feed' });
+            });
+        })
+        .catch((err) => {
+          console.error(err);
         });
     },
+  },
+
+  created() {
+    if (this.loggedIn) {
+      this.$router.replace({ name: 'feed' });
+    }
   },
 };
 

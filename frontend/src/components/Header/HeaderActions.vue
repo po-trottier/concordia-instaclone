@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'user', params: { uid: 'kXqYLYAgjiXwNiIn0bdfv1samvA2' } }">
+  <router-link :to="{ name: 'user', params: { uid: userId } }">
     <v-btn icon>
       <v-icon>mdi-account-outline</v-icon>
     </v-btn>
@@ -7,7 +7,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'HeaderActions',
+
+  computed: {
+    ...mapGetters('auth', ['userId']),
+  },
 };
 </script>

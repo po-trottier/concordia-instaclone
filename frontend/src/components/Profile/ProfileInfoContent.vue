@@ -4,7 +4,7 @@
       class="md-font"
       justify="center"
       justify-sm="start">
-      Radley Carpio
+      {{ profile.name }}
     </v-row>
     <v-row
       class="sm-font mb-2"
@@ -12,21 +12,27 @@
       justify-sm="start">
       <a
         target="_blank"
-        href="https://google.ca">
-        This is my website.
+        :href="profile.website">
+        {{ profile.website }}
       </a>
     </v-row>
     <v-row
       class="sm-font"
       justify="center"
       justify-sm="start">
-      This is my bio.
+      {{ profile.bio }}
     </v-row>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default ({
   name: 'ProfileInfoContent',
+
+  computed: {
+    ...mapGetters('profile', ['profile']),
+  },
 });
 </script>
