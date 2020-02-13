@@ -39,11 +39,22 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import PostsFeed from '@/components/Feed/PostsFeed.vue';
 import Suggested from '@/components/Feed/Suggested.vue';
 
 export default {
   name: 'Feed',
+
+  computed: {
+    ...mapGetters('auth', ['loggedIn']),
+  },
+
+  created() {
+    if (!this.loggedIn) {
+      this.$router.replace({ name: 'landing' });
+    }
+  },
 
   components: {
     appPostsFeed: PostsFeed,
