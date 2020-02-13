@@ -15,11 +15,11 @@
           no-gutters
           align="center">
           <v-avatar size="64">
-            <v-img src="@/assets/account-placeholder.png" />
+            <v-img :src="image" />
           </v-avatar>
           <v-col class="pl-5">
             <span style="font-weight: 400; font-size: 1.3rem;">
-              radleycarpio
+              {{ user.username }}
             </span>
             <app-change-dp />
           </v-col>
@@ -31,11 +31,36 @@
 </template>
 
 <script >
+import { mapGetters } from 'vuex';
 import EditForm from './EditForm.vue';
 import ChangeDP from './ChangeDP.vue';
+import placeholder from '@/assets/account-placeholder.png';
 
 export default ({
-  name: 'InfoGrid',
+  name: 'UserInfo',
+
+  data() {
+    return {
+      image: placeholder,
+    };
+  },
+
+  computed: {
+    ...mapGetters('auth', ['user']),
+  },
+
+  created() {
+    const storage = this.$firebase.storage();
+    const imageRef = storage.refFromURL(this.user.picture);
+    imageRef.getDownloadURL()
+      .then((url) => {
+        this.image = url;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+
   components: {
     appEditForm: EditForm,
     appChangeDp: ChangeDP,

@@ -1,23 +1,32 @@
+p, span, a, h1, h2, h3, h4, h5, h6, div {
+  word-break: break-word;
+}
+
 .narrow {
   max-width: 900px !important;
   margin: 0 auto !important;
 }
+
 .xs-font {
   font-weight: 400;
   font-size: 0.8rem;
 }
+
 .sm-font {
   font-weight: 400;
   font-size: 1rem;
 }
+
 .md-font {
   font-weight: 500;
   font-size: 1rem;
 }
+
 .lg-font {
   font-weight: 400;
   font-size: 1.75rem;
 }
+
 .pointer:hover {
     cursor: pointer;
 }
@@ -30,7 +39,6 @@
   .show-mobile {
     display: flex;
   }
-
   .hide-mobile {
     display: none !important;
   }
