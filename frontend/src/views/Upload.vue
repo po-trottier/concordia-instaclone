@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'Upload',
@@ -41,6 +41,10 @@ export default {
       file: null,
       data: null,
     };
+  },
+
+  computed: {
+    ...mapGetters('auth', ['loggedIn']),
   },
 
   watch: {
@@ -65,6 +69,12 @@ export default {
           console.error(err);
         });
     },
+  },
+
+  created() {
+    if (!this.loggedIn) {
+      this.$router.replace({ name: 'landing' });
+    }
   },
 };
 </script>

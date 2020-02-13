@@ -92,9 +92,11 @@ export default {
         .then(() => {
           this.$firebase.auth().signInWithEmailAndPassword(this.email, this.password)
             .then(({ user }) => {
-              this.progress = false;
               this.getUser(user.uid);
-              this.$router.replace({ name: 'feed' });
+              setTimeout(() => {
+                this.progress = false;
+                this.$router.replace({ name: 'feed' });
+              }, 500);
             });
         })
         .catch((err) => {

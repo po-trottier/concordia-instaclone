@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import ProfileInfo from '@/components/Profile/ProfileInfo.vue';
 import ProfileGallery from '@/components/Profile/ProfileGallery.vue';
 
@@ -14,6 +14,8 @@ export default {
   name: 'User',
 
   computed: {
+    ...mapGetters('auth', ['loggedIn']),
+
     uid() {
       return this.$route.params.uid;
     },
@@ -30,6 +32,10 @@ export default {
   },
 
   created() {
+    if (!this.loggedIn) {
+      this.$router.replace({ name: 'landing' });
+      return;
+    }
     this.getProfile(this.uid);
   },
 
