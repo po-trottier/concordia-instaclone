@@ -7,10 +7,8 @@
 <script>
 export default ({
   name: 'Username',
-
   data() {
     return {
-
       username: 'radleycarpio',
     };
   },

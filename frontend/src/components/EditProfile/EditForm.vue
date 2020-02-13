@@ -1,5 +1,5 @@
 <template>
-  <v-form ref="form">
+  <v-form>
     <v-row no-gutters>
       <v-col
         col="12"
@@ -58,18 +58,14 @@
 <script>
 export default ({
   name: 'EditForm',
-
   data() {
     return {
-
       name: '',
       username: '',
       bio: '',
     };
   },
-
   methods: {
-
     submit() {
       console.log(this.name, this.username, this.bio);
     },

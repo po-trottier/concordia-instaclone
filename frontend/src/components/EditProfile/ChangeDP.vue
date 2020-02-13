@@ -74,8 +74,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-
 export default ({
   name: 'ChangeDP',
   data() {
@@ -86,21 +84,11 @@ export default ({
       data: null,
     };
   },
-
-  watch: {
-    file() {
-      this.data = URL.createObjectURL(this.file);
-    },
-  },
-
   methods: {
-    ...mapActions('posts', ['addPost']),
-
     remove() {
       console.log('Removed picture');
       this.value = false;
     },
-
     upload() {
       console.log('Uploaded picture');
       this.value = false;

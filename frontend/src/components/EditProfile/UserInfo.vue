@@ -36,9 +36,7 @@ import UserAvatar from './UserAvatar.vue';
 
 export default ({
   name: 'InfoGrid',
-
   components: {
-
     appUsername: Username,
     appEditForm: EditForm,
     appChangeDp: ChangeDP,

@@ -3,6 +3,7 @@
     class="gallery-item white--text ma-3"
     style="font-size: 1.2rem; font-weight: 600; position: relative;">
     <v-img
+      @focus="log"
       aspect-ratio="1"
       src="@/assets/account-placeholder.png" />
     <div class="gallery-info">
@@ -27,6 +28,12 @@
 <script>
 export default ({
   name: 'ProfileGalleryItem',
+  methods: {
+
+    log() {
+      console.log('FUCK YEAH');
+    },
+  },
 });
 </script>
 

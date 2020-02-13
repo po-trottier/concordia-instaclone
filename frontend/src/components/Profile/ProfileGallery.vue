@@ -18,7 +18,6 @@ import ProfileGalleryItem from './ProfileGalleryItem.vue';
 
 export default ({
   name: 'ProfileGallery',
-
   components: {
     appGalleryItem: ProfileGalleryItem,
   },
