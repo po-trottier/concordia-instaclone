@@ -4,7 +4,8 @@
       no-gutters
       class="narrow mt-4">
       <v-col
-        cols="4"
+        cols="6"
+        sm="4"
         v-for="item in 13"
         :key="item.id">
         <app-gallery-item />

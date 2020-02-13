@@ -1,46 +1,44 @@
 <template>
-  <v-container>
+  <div class="px-6">
     <v-row
       no-gutters
-      class="mt-1 narrow">
+      class="mb-4">
       <v-col
-        col="12"
-        md="2">
+        cols="12"
+        sm="3"
+        md="2" />
+      <v-col
+        cols="12"
+        sm="9"
+        md="10">
         <v-row
-          justify="end"
-          class="mb-7 mt-2">
-          <app-user-avatar />
+          no-gutters
+          align="center">
+          <v-avatar size="64">
+            <v-img src="@/assets/account-placeholder.png" />
+          </v-avatar>
+          <v-col class="pl-5">
+            <span style="font-weight: 400; font-size: 1.3rem;">
+              radleycarpio
+            </span>
+            <app-change-dp />
+          </v-col>
         </v-row>
       </v-col>
-      <v-col md="8">
-        <v-col class="mr-3 ml-10">
-          <v-row class="mt-n3">
-            <app-username />
-          </v-row>
-          <v-row>
-            <app-change-dp />
-          </v-row>
-        </v-col>
-      </v-col>
-      <v-col />
     </v-row>
     <app-edit-form />
-  </v-container>
+  </div>
 </template>
 
 <script >
-import Username from './Username.vue';
 import EditForm from './EditForm.vue';
 import ChangeDP from './ChangeDP.vue';
-import UserAvatar from './UserAvatar.vue';
 
 export default ({
   name: 'InfoGrid',
   components: {
-    appUsername: Username,
     appEditForm: EditForm,
     appChangeDp: ChangeDP,
-    appUserAvatar: UserAvatar,
   },
 });
 </script>

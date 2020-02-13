@@ -1,49 +1,41 @@
 <template>
   <div>
-    <v-btn
-      small
-      depressed
-      max-width="160"
-      text
-      color="primary"
-      class="mt-n2"
+    <span
+      class="primary--text text-uppercase pointer font-weight-medium"
       @click="value = true">
       Change Profile Photo
-    </v-btn>
+    </span>
     <v-dialog
       width="400"
       v-model="value">
-      <v-card
-        light
-        width="400"
-        align="center">
-        <v-col>
-          <v-row class="mx-10 my-6">
-            <span class="md-font">
-              Change Profile Photo
-            </span>
-          </v-row>
-          <v-divider />
-          <v-row>
-            <input
-              type="file"
-              ref="fileInput"
-              accept="image/*"
-              style="display: none;"
-              @change="upload">
-            <v-btn
-              small
-              depressed
-              class="my-2"
-              width="100%"
-              text
-              color="primary"
-              @click="$refs.fileInput.click()">
-              Upload Photo
-            </v-btn>
-          </v-row>
-          <v-divider />
-          <v-row>
+      <v-card>
+        <v-card-title class="justify-center py-4">
+          <span class="md-font text-center">
+            Change Profile Photo
+          </span>
+        </v-card-title>
+        <v-card-actions class="pt-0">
+          <v-col class="pt-0">
+            <v-divider />
+            <div>
+              <input
+                type="file"
+                ref="fileInput"
+                accept="image/*"
+                style="display: none;"
+                @change="upload">
+              <v-btn
+                small
+                depressed
+                class="my-2"
+                width="100%"
+                text
+                color="primary"
+                @click="$refs.fileInput.click()">
+                Upload Photo
+              </v-btn>
+            </div>
+            <v-divider />
             <v-btn
               small
               depressed
@@ -54,9 +46,7 @@
               @click="remove">
               Remove Current Photo
             </v-btn>
-          </v-row>
-          <v-divider />
-          <v-row>
+            <v-divider />
             <v-btn
               small
               depressed
@@ -66,8 +56,8 @@
               @click="value = false">
               Cancel
             </v-btn>
-          </v-row>
-        </v-col>
+          </v-col>
+        </v-card-actions>
       </v-card>
     </v-dialog>
   </div>

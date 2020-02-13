@@ -2,13 +2,14 @@
   <v-row
     justify="center"
     justify-sm="start">
-    <span class="lg-font">
+    <p class="lg-font my-auto">
       radleycaprio
-    </span>
+    </p>
     <v-btn
       small
       depressed
-      color="light darken-1"
+      outlined
+      color="dark lighten-4"
       class="ml-5 my-auto hide-mobile"
       :to="{ name: 'edit' }">
       <span>
