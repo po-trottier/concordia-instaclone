@@ -18,7 +18,7 @@
             <app-username />
           </v-row>
           <v-row>
-            <app-change-d-p />
+            <app-change-dp />
           </v-row>
         </v-col>
       </v-col>
@@ -41,7 +41,7 @@ export default ({
 
     appUsername: Username,
     appEditForm: EditForm,
-    appChangeDP: ChangeDP,
+    appChangeDp: ChangeDP,
     appUserAvatar: UserAvatar,
   },
 });

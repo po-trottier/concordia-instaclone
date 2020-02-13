@@ -5,21 +5,18 @@
         col="12"
         md="2">
         <v-row
-          class="mb-6"
-          justify="end"
-          style="font-size: 1.05rem; font-weight: 550;">
+          class="md-font mb-6"
+          justify="end">
           Name
         </v-row>
         <v-row
-          class="mb-6"
-          justify="end"
-          style="font-size: 1.05rem; font-weight: 550;">
+          class="md-font mb-6"
+          justify="end">
           Username
         </v-row>
         <v-row
-          class="mb-6"
-          justify="end"
-          style="font-size: 1.05rem; font-weight: 550;">
+          class="md-font mb-6"
+          justify="end">
           Bio
         </v-row>
       </v-col>

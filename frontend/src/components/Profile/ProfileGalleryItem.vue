@@ -15,9 +15,8 @@
       </span>
       <span class="pointer">
         <v-icon
-          style="transform: scaleX(-1)"
           color="white">
-          mdi-chat
+          mdi-comment
         </v-icon>
         100
       </span>

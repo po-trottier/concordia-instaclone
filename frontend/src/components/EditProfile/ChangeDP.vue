@@ -4,57 +4,58 @@
       small
       depressed
       max-width="160"
-      color="white"
+      text
+      color="primary"
       class="mt-n2"
-      style="color: #3399ff;"
       @click="value = true">
       Change Profile Photo
     </v-btn>
-    <v-dialog width="400" v-model="value">
+    <v-dialog
+      width="400"
+      v-model="value">
       <v-card
         light
         width="400"
         align="center">
         <v-col>
           <v-flex class="mx-10 my-6">
-            <span style="font-weight:bold; font-size:1.1rem;">
+            <span class="md-font">
               Change Profile Photo
             </span>
           </v-flex>
-          <v-divider width="100%" />
-          <v-flex>
-            <input
-              type="file"
+          <v-divider />
+          <v-row>
+            <v-input-file
               ref="fileInput"
               accept="image/*"
               style="display: none;"
-              @change="upload">
+              @change="upload" />
             <v-btn
               small
               depressed
               class="my-2"
               width="100%"
-              color="white"
-              style="color: #3399ff"
+              text
+              color="primary"
               @click="$refs.fileInput.click()">
               Upload Photo
             </v-btn>
-          </v-flex>
-          <v-divider width="100%" />
-          <v-flex>
+          </v-row>
+          <v-divider />
+          <v-row>
             <v-btn
               small
               depressed
               class="my-2"
               width="100%"
-              color="white"
-              style="color: #ff3333;"
+              text
+              color="red lighten-1"
               @click="remove">
               Remove Current Photo
             </v-btn>
-          </v-flex>
-          <v-divider width="100%" />
-          <v-flex>
+          </v-row>
+          <v-divider />
+          <v-row>
             <v-btn
               small
               depressed
@@ -64,7 +65,7 @@
               @click="value = false">
               Cancel
             </v-btn>
-          </v-flex>
+          </v-row>
         </v-col>
       </v-card>
     </v-dialog>
@@ -72,6 +73,8 @@
 </template>
 
 <script>
+// style="color: #3399ff;"
+
 import { mapActions } from 'vuex';
 
 export default ({
