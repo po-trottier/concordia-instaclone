@@ -88,6 +88,7 @@ export default {
       })
         .then(() => {
           this.progress = false;
+          this.$router.push({ name: 'feed' });
         })
         .catch((err) => {
           console.error(err);
