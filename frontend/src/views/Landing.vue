@@ -102,15 +102,14 @@ export default {
               })
               .catch((err) => {
                 console.error(err);
-              })
-              .finally(() => {
-                this.progress = false;
               });
           });
         })
         .catch((err) => {
-          this.progress = false;
           console.error(err);
+        })
+        .finally(() => {
+          this.progress = false;
         });
     },
   },

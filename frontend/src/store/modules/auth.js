@@ -55,7 +55,7 @@ const actions = {
       });
     context.commit('mutateUser', context.state.user);
   },
-  
+
   setUnfollowing: (context, payload) => {
     context.commit('mutateFollowingCount', context.state.user.following_count - 1);
     context.commit('mutateRemoveFollowId', payload);
