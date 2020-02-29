@@ -31,23 +31,40 @@
       </v-btn>
     </div>
     <v-btn
-      v-else
+      v-if="user.uid !== profile.uid && followStatus !== true"
       depressed
       class="ml-6"
-      color="primary">
+      color="primary"
+      @click="follow">
       Follow
+    </v-btn>
+    <v-btn
+      v-if="user.uid !== profile.uid && followStatus === true"
+      depressed
+      class="ml-6"
+      @click="unfollow">
+      Unfollow
     </v-btn>
   </v-row>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default ({
   name: 'ProfileInfoUsername',
 
+  methods: {
+    ...mapActions('profile', ['followUser', 'unfollowUser']),
+    follow() {
+      this.followUser(this.profile.uid);
+    },
+    unfollow() {
+      this.unfollowUser(this.profile.uid);
+    },
+  },
   computed: {
-    ...mapGetters('profile', ['profile']),
+    ...mapGetters('profile', ['profile', 'followStatus']),
     ...mapGetters('auth', ['loggedIn', 'user']),
   },
 });
