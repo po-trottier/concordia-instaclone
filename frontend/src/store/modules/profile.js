@@ -15,15 +15,24 @@ const state = {
     uid: '',
     posts: [],
   },
+  follow_status: false,
 };
 
 const getters = {
   profile: s => s.profile,
+  followStatus: s => s.follow_status,
 };
 
 const mutations = {
   mutateProfile: (s, payload) => {
     s.profile = payload;
+  },
+  mutateFollowStatus: (s, payload) => {
+    s.follow_status = payload;
+  },
+  // update follower count
+  mutateProfileFollowersCount: (s, payload) => {
+    s.profile.followers_count = payload;
   },
 };
 
@@ -33,6 +42,9 @@ const actions = {
       .then((snapshot) => {
         const user = snapshot.data();
         user.uid = payload;
+        // Get the current user's info
+        const auth = context.rootGetters['auth/user'];
+        context.commit('mutateFollowStatus', auth.following.includes(user.uid));
         context.commit('mutateProfile', user);
         context.dispatch('getProfilePosts', payload);
       })
@@ -55,6 +67,34 @@ const actions = {
       })
       .catch((err) => {
         console.error(err);
+      });
+  },
+
+  followUser: (context, payload) => {
+    context.commit('mutateProfileFollowersCount', context.state.profile.followers_count + 1);
+    // call action for push this profile id to auth.following array from auth.js modules
+    context.dispatch('auth/setFollowing', payload, { root: true });
+    // call action to change follow status ( use for button in template )
+    context.commit('mutateFollowStatus', true);
+    // firebase or http request
+    firebase.firestore().collection('users').doc(payload)
+      .update({
+        followers_count: context.state.profile.followers_count,
+      });
+  },
+  
+  unfollowUser: (context, payload) => {
+    // mutateProfileFollowersCount
+    // follower_count - 1
+    context.commit('mutateProfileFollowersCount', context.state.profile.followers_count - 1);
+    // call action for remove this profile id to auth.following array from auth.js modules
+    context.dispatch('auth/setUnfollowing', payload, { root: true });
+    // call action to change follow status ( use for button in template )
+    context.commit('mutateFollowStatus', false);
+    // firebase or http request
+    firebase.firestore().collection('users').doc(payload)
+      .update({
+        followers_count: context.state.profile.followers_count,
       });
   },
 };

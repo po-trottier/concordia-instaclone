@@ -15,6 +15,15 @@ const mutations = {
     localStorage.user = JSON.stringify(payload);
     s.user = payload;
   },
+  mutateAddFollowId: (s, payload) => {
+    s.user.following.push(payload);
+  },
+  mutateRemoveFollowId: (s, payload) => {
+    s.user.following.splice(payload, 1);
+  },
+  mutateFollowingCount: (s, payload) => {
+    s.user.following_count = payload;
+  },
 };
 
 const actions = {
@@ -35,6 +44,28 @@ const actions = {
         reject(err);
       });
   }),
+
+  setFollowing: (context, payload) => {
+    context.commit('mutateFollowingCount', context.state.user.following_count + 1);
+    context.commit('mutateAddFollowId', payload);
+    firebase.firestore().collection('users').doc(context.state.user.uid)
+      .update({
+        following_count: context.state.user.following_count,
+        following: context.state.user.following,
+      });
+    context.commit('mutateUser', context.state.user);
+  },
+  
+  setUnfollowing: (context, payload) => {
+    context.commit('mutateFollowingCount', context.state.user.following_count - 1);
+    context.commit('mutateRemoveFollowId', payload);
+    firebase.firestore().collection('users').doc(context.state.user.uid)
+      .update({
+        following_count: context.state.user.following_count,
+        following: context.state.user.following,
+      });
+    context.commit('mutateUser', context.state.user);
+  },
 };
 
 export default {
