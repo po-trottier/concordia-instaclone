@@ -4,7 +4,7 @@
 
 This project is meant to be an Instagram clone and was created for Concordia's SOEN 341 (Software Process) Course.
 
-- [Link to the website](https://soen341-instaclone.web.app/)
+**[Link to the website](https://soen341-instaclone.web.app/)**
 
 ---
 
@@ -21,18 +21,18 @@ This project is meant to be an Instagram clone and was created for Concordia's S
 
 - Imitate the main features Instagram offers to users
 - Core features:
-    - Being able to see a landing page when i'm not logged in
-    - Being able to log in
-    - Being able to log in using Google and Facebook
-    - Having access to the app in French and in English
-    - Having a customizable personal profile
-    - Being able to post a photo
-    - Being able to add a description with Hashtags to the post
+    - ~~Being able to see a landing page when i'm not logged in~~
+    - ~~Being able to log in~~
+    - ~~Being able to post a photo~~
+    - ~~Being able to follow the users~~
+    - Being able to create an account
     - Being able to comment on the post
+    - Being able to log in using Google and Facebook
+    - Being able to add a description with Hashtags to the post
     - Being able to search for users
-    - Being able to follow the users you find
-    - Being able to search for Hashtags
-    - Being able to see a list of photos based on an existing hashtag
+    - Being able to search for Hashtags and see related posts
+    - Having a customizable personal profile
+    - ~~Having access to the app in French and in English~~ *Will not implement*
 
 ### Technology Stack
 
@@ -48,6 +48,10 @@ This project is meant to be an Instagram clone and was created for Concordia's S
     - *Firebase Hosting*
 - Unit Testing:
     - *Mocha + Chai*
+
+### Organizational Block Diagram
+
+![Block Diagram](block-diagram.png)
 
 ### Useful Commands
 
