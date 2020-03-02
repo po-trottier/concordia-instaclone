@@ -4,9 +4,10 @@
       no-gutters
       class="my-2">
       <v-btn
-        @click="like"
+        @click="toggleLike"
         icon
-        class="mr-1">
+        class="mr-1"
+        :color="isLiked ? 'red' : 'grey'">
         <v-icon>
           mdi-heart-outline
         </v-icon>
@@ -14,7 +15,7 @@
       <span
         class="xs-font font-weight-bold text-uppercase my-auto"
         style="opacity: 0.8;">
-        {{ content.likes_count.toFixed(0) }} likes
+        {{ likes }} likes
       </span>
     </v-row>
     <div
@@ -71,6 +72,8 @@ export default {
   data() {
     return {
       comment: null,
+      likes: 0,
+      liked: false,
     };
   },
 
@@ -78,11 +81,28 @@ export default {
     time() {
       return timeago.format(this.content.timestamp.toDate());
     },
+    isLiked() {
+      return this.liked;
+    },
   },
 
   methods: {
-    like() {
-      console.log(`Like Post: ${this.content.id}`);
+    toggleLike() {
+      if (!this.liked) {
+        this.likePhoto();
+      } else {
+        this.unlikePhoto();
+      }
+    },
+    likePhoto() {
+      // this.content.likes_count += 1;
+      this.likes++;
+      this.liked = true;
+    },
+    unlikePhoto() {
+      // this.content.likes_count -= 1;
+      this.likes--;
+      this.liked = false;
     },
     post() {
       console.log(`Comment: ${this.comment} (${this.content.id})`);
