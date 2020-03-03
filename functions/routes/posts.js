@@ -16,23 +16,19 @@ function addToProfile(id, content) {
       user.update({
         posts_count: field.increment(1)
       })
-        .then(() => { 
-          console.log('Updated Posts Count') ;
+        .then(() => {
           resolve('Added new Post');
         })
-        .catch(() => { 
-          console.error('Could not Update Posts Count');
+        .catch(() => {
           reject(new Error('Could not Update Posts Count'));
         });
     }).catch((err) => {
       console.error(err);
       posts.doc(id).delete()
         .then(() => {
-          console.warn('Post Document '+ id +' Removed from Posts Collection');
           reject(new Error('Post Document '+ id +' Removed from Posts Collection'));
         })
         .catch((err) => {
-          console.error(err);
           reject(err);
         });
     });
