@@ -43,11 +43,14 @@ const actions = {
         const user = snapshot.data();
         user.uid = payload;
         // Get the current user's info
+<<<<<<< Updated upstream
         let auth = context.rootGetters['auth/user'];
+=======
+        const auth = context.rootGetters['auth/user'];
+>>>>>>> Stashed changes
         if (!auth.following) {
           context.dispatch('auth/getUser', auth.uid, { root: true })
             .then(() => {
-              auth = context.rootGetters['auth/user'];
               if (!auth.following) {
                 console.error('Invalid Profile Loaded: Missing Following Array');
                 return;
@@ -94,7 +97,10 @@ const actions = {
         followers_count: context.state.profile.followers_count,
       });
   },
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
   unfollowUser: (context, payload) => {
     // mutateProfileFollowersCount
     // follower_count - 1
