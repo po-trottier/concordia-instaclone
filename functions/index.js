@@ -19,6 +19,9 @@ exports.posts = functions.firestore.document('posts/{postId}')
     return posts.addToProfile(context.params.postId, snapshot.data());
   });
 
-// THIS IS AN EXAMPLE OF AN HTTP REQUEST ROUTE
-// const posts = require('./routes/posts');
-// exports.posts = functions.https.onRequest(posts.handler);
+// Add the routes
+const users = require('./routes/users');
+exports.users = functions.auth.user()
+  .onCreate((user) => {
+    return users.addToDatabase(user);
+  });
