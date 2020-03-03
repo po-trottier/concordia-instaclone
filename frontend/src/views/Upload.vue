@@ -31,18 +31,11 @@
           dense
           single-line
           show-size />
-        <v-form>
-          <v-col
-            cols="12"
-            sm="1"
-            md="12">
-            <v-textarea
-              auto-grow
-              clearable
-              outlined
-              label="Write a Caption..." />
-          </v-col>
-        </v-form>
+        <v-textarea
+          auto-grow
+          clearable
+          outlined
+          label="Write a Caption..." />
         <v-btn
           large
           block
@@ -69,6 +62,7 @@ export default {
       progress: false,
       file: null,
       data: null,
+      description: null,
       rules: [
         file => (file ? file.size <= 5242880 : true) || 'File must be smaller than 5 MB',
       ],

@@ -7,10 +7,11 @@
       <v-form @submit.prevent="signup">
         <v-card
           elevation="6"
-          class="pa-6 mx-auto my-12"
+          class="pa-6 mx-auto my-12 justify-center"
           style="max-width: 500px;">
-          <v-card-title>
-            <h1 align="center">
+          <v-card-title
+            class="justify-center">
+            <h1>
               Sign Up
             </h1>
           </v-card-title>
@@ -25,6 +26,15 @@
               type="email"
               placeholder="E-mail" />
             <v-text-field
+              v-model="user"
+              class="mb-3"
+              outlined
+              rounded
+              hide-details
+              clearable
+              type="text"
+              placeholder="Username" />
+            <v-text-field
               v-model="password"
               class="mb-3"
               outlined
@@ -33,14 +43,6 @@
               clearable
               type="password"
               placeholder="Password" />
-            <v-text-field
-              v-model="user"
-              outlined
-              rounded
-              hide-details
-              clearable
-              type="username"
-              placeholder="Username" />
           </v-card-text>
           <v-card-actions>
             <v-col class="text-center">
@@ -71,6 +73,7 @@ export default {
     return {
       email: null,
       password: null,
+      user: null,
     };
   },
 
