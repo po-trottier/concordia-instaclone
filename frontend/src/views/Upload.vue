@@ -32,6 +32,7 @@
           single-line
           show-size />
         <v-textarea
+          v-model="description"
           auto-grow
           clearable
           outlined
@@ -91,6 +92,7 @@ export default {
 
       this.addPost({
         file: this.file,
+        description: this.description,
       })
         .then(() => {
           this.progress = false;
