@@ -31,6 +31,12 @@
           dense
           single-line
           show-size />
+        <v-textarea
+          v-model="description"
+          auto-grow
+          clearable
+          outlined
+          label="Write a Caption..." />
         <v-btn
           large
           block
@@ -57,6 +63,7 @@ export default {
       progress: false,
       file: null,
       data: null,
+      description: null,
       rules: [
         file => (file ? file.size <= 5242880 : true) || 'File must be smaller than 5 MB',
       ],
@@ -85,6 +92,7 @@ export default {
 
       this.addPost({
         file: this.file,
+        description: this.description,
       })
         .then(() => {
           this.progress = false;

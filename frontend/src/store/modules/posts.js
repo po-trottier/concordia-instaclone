@@ -72,6 +72,7 @@ const actions = {
         post.timestamp = firebase.firestore.FieldValue.serverTimestamp();
         post.picture = `gs://${ref.bucket}/${ref.fullPath}`;
         post.id = name;
+        post.description = payload.description;
 
         // Get the current user's info
         const user = context.rootGetters['auth/user'];
