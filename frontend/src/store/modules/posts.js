@@ -3,7 +3,7 @@ import clone from 'clone-deep';
 
 // TEMP
 const defaultPost = {
-  comment_count: 0,
+  comments_count: 0,
   description: 'This is the default description',
   id: null,
   likes_count: 0,
