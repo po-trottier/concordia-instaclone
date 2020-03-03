@@ -9,7 +9,7 @@
         class="mr-1"
         :color="isLiked ? 'red' : 'grey'">
         <v-icon>
-          mdi-heart-outline
+          {{ isLiked ? 'mdi-heart' : 'mdi-heart-outline' }}
         </v-icon>
       </v-btn>
       <span
