@@ -79,10 +79,7 @@ export default {
       comment: null,
       likes: 0,
       liked: false,
-<<<<<<< Updated upstream
-=======
       profileDefault: account,
->>>>>>> Stashed changes
     };
   },
 

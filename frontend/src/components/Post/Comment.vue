@@ -17,9 +17,8 @@
         </span>
       </router-link>
       {{ comment.content }}
-      <v-row
-        no-gutters
-        class="mt-4">
+      <v-row no-gutters
+       class="mt-4">
         <p
           class="xs-font"
           style="opacity: 0.6;">

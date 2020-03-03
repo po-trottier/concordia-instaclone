@@ -4,14 +4,6 @@
       no-gutters
       class="pt-2 pr-3">
       <v-col cols="12">
-        <app-comment
-          v-for="item in content.comments"
-          :key="item.id"
-          :comment="item" />
-        <hr>
-        <br>
-      </v-col>
-      <v-col cols="12">
         <div
           class="px-3"
           style="width: 100%;">
@@ -47,6 +39,14 @@
             {{ time }}
           </p>
         </v-row>
+      </v-col>
+      <v-col cols="12">
+        <app-comment
+          v-for="item in content.comments"
+          :key="item.id"
+          :comment="item" />
+        <hr>
+        <br>
       </v-col>
       <v-col cols="12">
         <v-text-field

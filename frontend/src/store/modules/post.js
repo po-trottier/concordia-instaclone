@@ -1,50 +1,3 @@
-<<<<<<< Updated upstream
-import firebase from 'firebase';
-
-const state = {
-  post: null,
-  error: false,
-};
-
-const getters = {
-  getPost: s => s.post,
-  getError: s => s.error,
-};
-
-const mutations = {
-  mutatePost: (s, payload) => {
-    s.post = payload;
-  },
-  mutateError: (s, payload) => {
-    s.error = payload;
-  },
-};
-
-const actions = {
-  queryPost: (context, payload) => {
-    firebase.firestore().collection('posts').doc(payload).get()
-      .then((snapshot) => {
-        if (snapshot.data()) {
-          context.commit('mutatePost', snapshot.data());
-        } else {
-          context.commit('mutateError', 'Post Not Found');
-        }
-      })
-      .catch((error) => {
-        context.commit('mutateError', 'database connection error');
-        console.log('Error getting document:', error);
-      });
-  },
-};
-
-export default {
-  namespaced: true,
-  state,
-  getters,
-  mutations,
-  actions,
-};
-=======
 import firebase from 'firebase';
 import clone from 'clone-deep';
 
@@ -109,4 +62,3 @@ export default {
   mutations,
   actions,
 };
->>>>>>> Stashed changes
