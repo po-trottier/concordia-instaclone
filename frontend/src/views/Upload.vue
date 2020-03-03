@@ -31,6 +31,18 @@
           dense
           single-line
           show-size />
+        <v-form>
+          <v-col
+            cols="12"
+            sm="1"
+            md="12">
+            <v-textarea
+              auto-grow
+              clearable
+              outlined
+              label="Write a Caption..." />
+          </v-col>
+        </v-form>
         <v-btn
           large
           block
