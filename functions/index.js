@@ -1,6 +1,9 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
+const posts = require('./routes/posts');
+const users = require('./routes/users');
+
 // Initialize Admin SDK
 const certificate = require("./certificate.json");
 if (!certificate) {
@@ -13,15 +16,15 @@ admin.initializeApp({
 });
 
 // Add the routes
-const posts = require('./routes/posts');
 exports.posts = functions.firestore.document('posts/{postId}')
   .onCreate((snapshot, context) => {
     return posts.addToProfile(context.params.postId, snapshot.data());
   });
-
-// Add the routes
-const users = require('./routes/users');
 exports.users = functions.auth.user()
   .onCreate((user) => {
     return users.addToDatabase(user);
+  });
+exports.information = functions.firestore.document('users/{userId}')
+  .onUpdate((change, context) => {
+    return users.editInformation(context.params.userId, change.before.data(), change.after.data());
   });
