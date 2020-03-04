@@ -6,7 +6,7 @@
       <v-img
         aspect-ratio="1"
         :src="image" />
-      <div class="gallery-info">
+      <div class="gallery-info white--text">
         <span class="pointer mr-6">
           <v-icon
             color="white">

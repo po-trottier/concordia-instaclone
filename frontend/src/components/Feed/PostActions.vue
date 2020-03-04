@@ -38,10 +38,6 @@
     <v-row
       no-gutters
       class="pt-2 pr-3">
-      <app-comment
-        v-for="item in content.comments"
-        :key="item.id"
-        :comment="item" />
       <v-text-field
         v-model="comment"
         dense
@@ -63,7 +59,6 @@
 <script>
 import * as timeago from 'timeago.js';
 import account from '@/assets/account-placeholder.png';
-import Comment from '../Post/Comment.vue';
 
 export default {
   name: 'PostActions',
@@ -82,7 +77,6 @@ export default {
       profileDefault: account,
     };
   },
-
   computed: {
     time() {
       return timeago.format(this.content.timestamp.toDate());
@@ -114,9 +108,6 @@ export default {
       console.log(`Comment: ${this.comment} (${this.content.id})`);
       this.comment = null;
     },
-  },
-  components: {
-    appComment: Comment,
   },
 };
 </script>

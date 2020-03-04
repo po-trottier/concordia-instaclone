@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div v-if="getPost">
+    <v-card v-if="getPost">
       <v-row no-gutters>
-        <v-col cols="12" md="8" >
+        <v-col
+          cols="12"
+          md="8">
           <v-card
             flat
             outlined
@@ -15,31 +17,24 @@
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col cols="4" md="4" >
-          <v-card-title>
-            <app-post-header
-              :user="getPost.user"
-              :username="getPost.username"
-              :profile="profile" />
-          </v-card-title>
-          <v-card-actions class="px-4">
-            <app-post-sidebar
-              :profile="profile"
-              :content="getPost" />
-          </v-card-actions>
+        <v-col
+          cols="4"
+          md="4">
+          <app-post-sidebar
+            :profile="profile"
+            :content="getPost" />
         </v-col>
       </v-row>
-    </div>
-    <div v-else>
+    </v-card>
+    <v-card v-else>
       <h1>Post Loading</h1>
-    </div>
+    </v-card>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import account from '@/assets/account-placeholder.png';
-import PostHeader from '../Feed/PostHeader.vue';
 import PostSidebar from './PostSidebar.vue';
 
 export default {
@@ -89,7 +84,6 @@ export default {
     this.queryPost(this.$route.params.id);
   },
   components: {
-    appPostHeader: PostHeader,
     appPostSidebar: PostSidebar,
   },
 };
