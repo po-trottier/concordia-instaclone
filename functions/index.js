@@ -1,9 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
-const posts = require('./routes/posts');
-const users = require('./routes/users');
-
 // Initialize Admin SDK
 const certificate = require("./certificate.json");
 if (!certificate) {
@@ -14,6 +11,10 @@ admin.initializeApp({
   databaseURL: "https://soen341-instaclone.firebaseio.com",
   storageBucket: "soen341-instaclone.appspot.com",
 });
+
+// Import routes
+const posts = require('./routes/posts');
+const users = require('./routes/users');
 
 // Add the routes
 exports.posts = functions.firestore.document('posts/{postId}')
