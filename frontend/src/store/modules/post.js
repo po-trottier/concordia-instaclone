@@ -14,6 +14,7 @@ const mutations = {
     s.post = payload;
   },
 };
+
 const actions = {
   queryPost: (context, payload) => {
     firebase.firestore().collection('posts').doc(payload).get()
@@ -31,9 +32,11 @@ const actions = {
         console.error(error);
       });
   },
+
   getPostComments: (context, payload) => {
     firebase.firestore().collection('posts').doc(payload)
       .collection('comments')
+      .orderBy('timestamp', 'asc')
       .get()
       .then((collection) => {
         if (collection) {
@@ -49,7 +52,6 @@ const actions = {
         }
       })
       .catch((error) => {
-        console.error('Comments Not Found');
         console.error(error);
       });
   },

@@ -1,30 +1,14 @@
 <template>
   <div>
-    <v-card v-if="getPost">
-      <v-row no-gutters>
-        <v-col
-          cols="12"
-          md="8">
-          <v-card
-            flat
-            outlined
-            class="mb-12">
-            <v-card-text class="pa-0">
-              <v-img
-                :src="image"
-                width="100%"
-                aspect-ratio="1" />
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col
-          cols="4"
-          md="4">
-          <app-post-sidebar
-            :profile="profile"
-            :content="getPost" />
-        </v-col>
-      </v-row>
+    <v-card
+      v-if="getPost"
+      flat>
+      <v-img
+        :src="image"
+        id="postImage"
+        width="100%"
+        aspect-ratio="1" />
+      <app-post-sidebar :profile="profile" />
     </v-card>
     <v-card v-else>
       <h1>Post Loading</h1>
@@ -35,19 +19,22 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import account from '@/assets/account-placeholder.png';
-import PostSidebar from './PostSidebar.vue';
+import PostSidebar from './Sidebar.vue';
 
 export default {
   name: 'Post',
+
   data() {
     return {
       image: '',
       profile: account,
     };
   },
+
   computed: {
     ...mapGetters('post', ['getPost']),
   },
+
   methods: {
     ...mapActions('post', ['queryPost']),
   },
@@ -80,9 +67,11 @@ export default {
       }
     },
   },
+
   mounted() {
     this.queryPost(this.$route.params.id);
   },
+
   components: {
     appPostSidebar: PostSidebar,
   },

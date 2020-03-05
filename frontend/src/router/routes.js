@@ -34,7 +34,7 @@ export default [
     name: 'post',
     components: {
       header: Header,
-      default: () => import(/* webpackChunkName: "post" */ '@/views/Post.vue'),
+      default: () => import(/* webpackChunkName: "post" */ '@/views/Details.vue'),
     },
   },
   {

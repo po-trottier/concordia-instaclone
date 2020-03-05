@@ -58,7 +58,6 @@
 
 <script>
 import * as timeago from 'timeago.js';
-import account from '@/assets/account-placeholder.png';
 
 export default {
   name: 'PostActions',
@@ -74,7 +73,6 @@ export default {
       comment: null,
       likes: 0,
       liked: false,
-      profileDefault: account,
     };
   },
   computed: {
