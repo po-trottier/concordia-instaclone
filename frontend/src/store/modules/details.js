@@ -67,14 +67,22 @@ const actions = {
     firebase.firestore().collection('posts').doc(payload.id).collection('comments')
       .add(newComment)
       .then(() => {
-        firebase.firestore().collection('posts').doc(payload.id)
-          .update({
-            comments_count: firebase.firestore.FieldValue.increment(1),
-          });
-        firebase.firestore().collection('users').doc(user.uid).collection('posts')
+        firebase.firestore().collection('posts')
           .doc(payload.id)
           .update({
             comments_count: firebase.firestore.FieldValue.increment(1),
+          });
+        firebase.firestore().collection('posts').doc(payload.id)
+          .get()
+          .then((snapshot) => {
+            firebase.firestore().collection('users').doc(snapshot.data().user).collection('posts')
+              .doc(payload.id)
+              .update({
+                comments_count: firebase.firestore.FieldValue.increment(1),
+              });
+          })
+          .catch((err) => {
+            console.error(err);
           });
         context.dispatch('getPostComments', payload.id);
         resolve();
