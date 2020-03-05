@@ -19,7 +19,7 @@
         <router-link
           :to="{ name: 'user', params: { uid: comment.user } }"
           class="black--text">
-          <span class="font-weight-medium mr-1">
+          <span class="font-weight-medium mr-2">
             {{ comment.username }}
           </span>
         </router-link>

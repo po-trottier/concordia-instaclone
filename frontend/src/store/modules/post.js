@@ -55,6 +55,27 @@ const actions = {
         console.error(error);
       });
   },
+
+  addPostComment: (context, payload) => new Promise((resolve, reject) => {
+    const user = context.rootGetters['auth/user'];
+    const newComment = {
+      content: payload.comment,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      user: user.uid,
+      user_picture: user.picture,
+      username: user.username,
+    };
+    firebase.firestore().collection('posts').doc(payload.id).collection('comments')
+      .add(newComment)
+      .then(() => {
+        context.dispatch('getPostComments', payload.id);
+        resolve();
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+  }),
 };
 
 export default {
