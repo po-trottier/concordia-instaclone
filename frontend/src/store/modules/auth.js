@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import clone from 'clone-deep';
 
 const state = {
   user: null,
@@ -65,6 +66,18 @@ const actions = {
         following: context.state.user.following,
       });
     context.commit('mutateUser', context.state.user);
+  },
+
+  addLike: (context, payload) => {
+    const user = clone(context.getters.user);
+    user.likes.push(payload);
+    context.commit('mutateUser', user);
+  },
+
+  removeLike: (context, payload) => {
+    const user = clone(context.getters.user);
+    user.likes.splice(user.likes.indexOf(payload), 1);
+    context.commit('mutateUser', user);
   },
 };
 

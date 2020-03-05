@@ -15,7 +15,7 @@
       <span
         class="xs-font font-weight-bold text-uppercase my-auto"
         style="opacity: 0.8;">
-        {{ likes }} likes
+        {{ count }} {{ count > 1 ? 'likes' : 'like' }}
       </span>
     </v-row>
     <div
@@ -33,30 +33,12 @@
           {{ time }}
         </p>
       </v-row>
-      <v-divider />
     </div>
-    <v-row
-      no-gutters
-      class="pt-2 pr-3">
-      <v-text-field
-        v-model="comment"
-        dense
-        solo
-        flat
-        hide-details
-        placeholder="Add a comment" />
-      <v-btn
-        @click="post"
-        color="primary"
-        :disabled="!comment || comment.trim().length < 1"
-        depressed>
-        Send
-      </v-btn>
-    </v-row>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import * as timeago from 'timeago.js';
 
 export default {
@@ -71,40 +53,30 @@ export default {
   data() {
     return {
       comment: null,
-      likes: 0,
-      liked: false,
+      count: this.content.likes_count,
     };
   },
+
   computed: {
+    ...mapGetters('auth', ['user']),
     time() {
       return timeago.format(this.content.timestamp.toDate());
     },
     isLiked() {
-      return this.liked;
+      return this.user.likes.includes(this.content.id);
     },
   },
 
   methods: {
+    ...mapActions('posts', ['likePost', 'unlikePost']),
     toggleLike() {
-      if (!this.liked) {
-        this.likePhoto();
+      if (!this.isLiked) {
+        this.count++;
+        this.likePost(this.content.id);
       } else {
-        this.unlikePhoto();
+        this.count--;
+        this.unlikePost(this.content.id);
       }
-    },
-    likePhoto() {
-      // this.content.likes_count += 1;
-      this.likes++;
-      this.liked = true;
-    },
-    unlikePhoto() {
-      // this.content.likes_count -= 1;
-      this.likes--;
-      this.liked = false;
-    },
-    post() {
-      console.log(`Comment: ${this.comment} (${this.content.id})`);
-      this.comment = null;
     },
   },
 };

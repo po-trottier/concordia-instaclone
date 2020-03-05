@@ -100,6 +100,64 @@ const actions = {
         reject(err);
       });
   }),
+
+  likePost: (context, payload) => new Promise((resolve, reject) => {
+    const posts = clone(context.getters.getPosts);
+    posts.likes_count++;
+    context.commit('mutatePosts', posts);
+    context.dispatch('auth/addLike', payload, { root: true });
+    firebase.firestore().collection('posts').doc(payload)
+      .update({
+        likes_count: firebase.firestore.FieldValue.increment(1),
+      });
+    firebase.firestore().collection('posts').doc(payload)
+      .get()
+      .then((snapshot) => {
+        firebase.firestore().collection('users').doc(snapshot.data().user).collection('posts')
+          .doc(payload)
+          .update({
+            likes_count: firebase.firestore.FieldValue.increment(1),
+          });
+        firebase.firestore().collection('users').doc(snapshot.data().user)
+          .update({
+            likes: firebase.firestore.FieldValue.arrayUnion(payload),
+          });
+        resolve();
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+  }),
+
+  unlikePost: (context, payload) => new Promise((resolve, reject) => {
+    const posts = clone(context.getters.getPosts);
+    posts.likes_count--;
+    context.commit('mutatePosts', posts);
+    context.dispatch('auth/removeLike', payload, { root: true });
+    firebase.firestore().collection('posts').doc(payload)
+      .update({
+        likes_count: firebase.firestore.FieldValue.increment(-1),
+      });
+    firebase.firestore().collection('posts').doc(payload)
+      .get()
+      .then((snapshot) => {
+        firebase.firestore().collection('users').doc(snapshot.data().user).collection('posts')
+          .doc(payload)
+          .update({
+            likes_count: firebase.firestore.FieldValue.increment(-1),
+          });
+        firebase.firestore().collection('users').doc(snapshot.data().user)
+          .update({
+            likes: firebase.firestore.FieldValue.arrayRemove(payload),
+          });
+        resolve();
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+  }),
 };
 
 export default {
