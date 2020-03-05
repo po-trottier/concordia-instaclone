@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import isUrl from 'is-url';
 
 export default ({
@@ -143,11 +143,13 @@ export default ({
   },
 
   methods: {
+    ...mapActions('auth', ['updateName', 'updateUsername', 'updateWebsite', 'updateBio']),
     submit() {
       this.validate();
-      console.log({
-        name: this.name, username: this.username, website: this.website, bio: this.bio,
-      });
+      this.updateName(this.name);
+      this.updateUsername(this.username);
+      this.updateWebsite(this.website);
+      this.updateBio(this.bio);
     },
 
     validate() {

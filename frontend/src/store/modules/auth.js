@@ -25,6 +25,18 @@ const mutations = {
   mutateFollowingCount: (s, payload) => {
     s.user.following_count = payload;
   },
+  mutateProfileName: (s, payload) => {
+    s.user.name = payload;
+  },
+  mutateProfileUsername: (s, payload) => {
+    s.user.username = payload;
+  },
+  mutateProfileWebsite: (s, payload) => {
+    s.user.website = payload;
+  },
+  mutateProfileBio: (s, payload) => {
+    s.user.bio = payload;
+  },
 };
 
 const actions = {
@@ -78,6 +90,38 @@ const actions = {
     const user = clone(context.getters.user);
     user.likes.splice(user.likes.indexOf(payload), 1);
     context.commit('mutateUser', user);
+  },
+  updateName: (context, payload) => {
+    context.commit('mutateProfileName', payload);
+    firebase.firestore().collection('users').doc(context.state.user.uid)
+      .update({
+        name: context.state.user.name,
+      });
+    context.commit('mutateUser', context.state.user);
+  },
+  updateUsername: (context, payload) => {
+    context.commit('mutateProfileUsername', payload);
+    firebase.firestore().collection('users').doc(context.state.user.uid)
+      .update({
+        username: context.state.user.username,
+      });
+    context.commit('mutateUser', context.state.user);
+  },
+  updateWebsite: (context, payload) => {
+    context.commit('mutateProfileWebsite', payload);
+    firebase.firestore().collection('users').doc(context.state.user.uid)
+      .update({
+        website: context.state.user.website,
+      });
+    context.commit('mutateUser', context.state.user);
+  },
+  updateBio: (context, payload) => {
+    context.commit('mutateProfileBio', payload);
+    firebase.firestore().collection('users').doc(context.state.user.uid)
+      .update({
+        bio: context.state.user.bio,
+      });
+    context.commit('mutateUser', context.state.user);
   },
 };
 
