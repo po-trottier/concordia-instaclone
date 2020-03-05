@@ -2,25 +2,27 @@
   <div
     class="gallery-item white--text ma-3"
     style="font-size: 1.2rem; font-weight: 600; position: relative;">
-    <v-img
-      aspect-ratio="1"
-      :src="image" />
-    <div class="gallery-info">
-      <span class="pointer mr-6">
-        <v-icon
-          color="white">
-          mdi-heart
-        </v-icon>
-        {{ item.likes_count }}
-      </span>
-      <span class="pointer">
-        <v-icon
-          color="white">
-          mdi-comment
-        </v-icon>
-        {{ item.comments_count }}
-      </span>
-    </div>
+    <router-link :to="{ name: 'post', params: { id: item.id } }">
+      <v-img
+        aspect-ratio="1"
+        :src="image" />
+      <div class="gallery-info white--text">
+        <span class="pointer mr-6">
+          <v-icon
+            color="white">
+            mdi-heart
+          </v-icon>
+          {{ item.likes_count }}
+        </span>
+        <span class="pointer">
+          <v-icon
+            color="white">
+            mdi-comment
+          </v-icon>
+          {{ item.comments_count }}
+        </span>
+      </div>
+    </router-link>
   </div>
 </template>
 

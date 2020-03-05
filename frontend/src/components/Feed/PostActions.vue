@@ -61,7 +61,6 @@ import * as timeago from 'timeago.js';
 
 export default {
   name: 'PostActions',
-
   props: {
     content: {
       type: Object,
@@ -76,7 +75,6 @@ export default {
       liked: false,
     };
   },
-
   computed: {
     time() {
       return timeago.format(this.content.timestamp.toDate());

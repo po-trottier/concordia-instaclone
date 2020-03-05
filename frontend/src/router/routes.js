@@ -30,6 +30,14 @@ export default [
     },
   },
   {
+    path: '/post/:id',
+    name: 'post',
+    components: {
+      header: Header,
+      default: () => import(/* webpackChunkName: "post" */ '@/views/Details.vue'),
+    },
+  },
+  {
     path: '/signup',
     name: 'signup',
     components: {

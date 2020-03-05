@@ -10,10 +10,12 @@
         :profile="profile" />
     </v-card-title>
     <v-card-text class="pa-0">
-      <v-img
-        :src="image"
-        width="100%"
-        aspect-ratio="1" />
+      <router-link :to="{ name: 'post', params: { id: content.id } }">
+        <v-img
+          :src="image"
+          width="100%"
+          aspect-ratio="1" />
+      </router-link>
     </v-card-text>
     <v-card-actions class="px-4">
       <app-post-actions :content="content" />

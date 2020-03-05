@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <v-container class="pt-10 mb-12">
@@ -6,7 +7,6 @@
         class="narrow">
         <v-col
           cols="12"
-          md="8"
           class="desktop-padding">
           <app-post />
         </v-col>
@@ -17,7 +17,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Post from '@/components/Post/Post.vue';
+import Post from '@/components/Details/Details.vue';
 
 export default {
   name: 'Post',
@@ -46,7 +46,6 @@ export default {
     width: 100%;
     transform: translateX(-50%);
   }
-
   @media screen and (min-width: 959px) {
     .desktop-padding {
       padding-right: 24px;
