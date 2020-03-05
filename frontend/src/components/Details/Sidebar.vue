@@ -106,7 +106,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('post', ['getPost']),
+    ...mapGetters('details', ['getPost']),
     time() {
       return timeago.format(this.getPost.timestamp.toDate());
     },
@@ -116,7 +116,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('post', ['addPostComment']),
+    ...mapActions('details', ['addPostComment']),
     toggleLike() {
       if (!this.liked) {
         this.likePhoto();

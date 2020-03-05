@@ -20,7 +20,6 @@ const actions = {
     firebase.firestore().collection('posts').doc(payload).get()
       .then((snapshot) => {
         if (snapshot.data()) {
-          // get comments
           context.commit('mutatePost', snapshot.data());
           context.dispatch('getPostComments', payload);
         } else {
@@ -68,6 +67,15 @@ const actions = {
     firebase.firestore().collection('posts').doc(payload.id).collection('comments')
       .add(newComment)
       .then(() => {
+        firebase.firestore().collection('posts').doc(payload.id)
+          .update({
+            comments_count: firebase.firestore.FieldValue.increment(1),
+          });
+        firebase.firestore().collection('users').doc(user.uid).collection('posts')
+          .doc(payload.id)
+          .update({
+            comments_count: firebase.firestore.FieldValue.increment(1),
+          });
         context.dispatch('getPostComments', payload.id);
         resolve();
       })
