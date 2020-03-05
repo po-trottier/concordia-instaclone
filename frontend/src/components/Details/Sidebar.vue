@@ -31,7 +31,7 @@
       <span
         class="xs-font font-weight-bold text-uppercase my-auto"
         style="opacity: 0.8;">
-        {{ likes }} likes
+        {{ count }} {{ count > 1 ? 'likes' : 'like' }}
       </span>
     </v-row>
     <div class="mb-4">
@@ -83,11 +83,10 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import * as timeago from 'timeago.js';
-import account from '@/assets/account-placeholder.png';
 import Comment from './Comment.vue';
 
 export default {
-  name: 'PostSidebar',
+  name: 'Sidebar',
   props: {
     profile: {
       type: String,
@@ -99,38 +98,41 @@ export default {
     return {
       comment: null,
       progress: false,
-      likes: 0,
-      liked: false,
-      profileDefault: account,
+      count: this.getPost ? this.getPost.likes_count : 0,
     };
   },
 
   computed: {
     ...mapGetters('details', ['getPost']),
+    ...mapGetters('auth', ['user']),
     time() {
       return timeago.format(this.getPost.timestamp.toDate());
     },
     isLiked() {
-      return this.liked;
+      return this.user.likes.includes(this.getPost.id);
+    },
+  },
+
+  watch: {
+    getPost(val) {
+      if (val === null) {
+        return;
+      }
+      this.count = this.getPost.likes_count;
     },
   },
 
   methods: {
     ...mapActions('details', ['addPostComment']),
+    ...mapActions('posts', ['likePost', 'unlikePost']),
     toggleLike() {
-      if (!this.liked) {
-        this.likePhoto();
+      if (!this.isLiked) {
+        this.count++;
+        this.likePost(this.getPost.id);
       } else {
-        this.unlikePhoto();
+        this.count--;
+        this.unlikePost(this.getPost.id);
       }
-    },
-    likePhoto() {
-      this.likes++;
-      this.liked = true;
-    },
-    unlikePhoto() {
-      this.likes--;
-      this.liked = false;
     },
     addComment() {
       this.progress = true;
