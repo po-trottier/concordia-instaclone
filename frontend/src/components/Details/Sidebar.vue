@@ -52,9 +52,7 @@
         :comment="item" />
     </div>
     <div v-else>
-      <p
-        class="text-center"
-        style="opacity: 0.6;">
+      <p style="opacity: 0.6;">
         <i>No comments here!</i>
       </p>
     </div>
@@ -74,7 +72,8 @@
       block
       color="primary"
       class="mt-4"
-      @click="post"
+      @click="addComment"
+      :loading="progress"
       :disabled="!comment || comment.trim().length < 1">
       Send
     </v-btn>
@@ -82,7 +81,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import * as timeago from 'timeago.js';
 import account from '@/assets/account-placeholder.png';
 import Comment from './Comment.vue';
@@ -99,6 +98,7 @@ export default {
   data() {
     return {
       comment: null,
+      progress: false,
       likes: 0,
       liked: false,
       profileDefault: account,
@@ -116,6 +116,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('post', ['addPostComment']),
     toggleLike() {
       if (!this.liked) {
         this.likePhoto();
@@ -131,9 +132,16 @@ export default {
       this.likes--;
       this.liked = false;
     },
-    post() {
-      console.log(`Comment: ${this.comment} (${this.getPost.id})`);
-      this.comment = null;
+    addComment() {
+      this.progress = true;
+      this.addPostComment({
+        comment: this.comment,
+        id: this.getPost.id,
+      }).then(() => {
+        this.comment = null;
+      }).finally(() => {
+        this.progress = false;
+      });
     },
   },
 
