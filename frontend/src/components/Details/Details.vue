@@ -22,7 +22,7 @@ import account from '@/assets/account-placeholder.png';
 import PostSidebar from './Sidebar.vue';
 
 export default {
-  name: 'Post',
+  name: 'Details',
 
   data() {
     return {
