@@ -66,6 +66,7 @@ const actions = {
 
   getProfilePosts: (context, payload) => {
     firebase.firestore().collection('users').doc(payload).collection('posts')
+      .orderBy('timestamp', 'desc')
       .get()
       .then((collection) => {
         const posts = [];

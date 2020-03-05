@@ -32,11 +32,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters('post', ['getPost']),
+    ...mapGetters('details', ['getPost']),
   },
 
   methods: {
-    ...mapActions('post', ['queryPost']),
+    ...mapActions('details', ['queryPost']),
   },
 
   // get post image after firestore request completed and watching for this.getPost changing

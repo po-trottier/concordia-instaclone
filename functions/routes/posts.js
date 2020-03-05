@@ -11,7 +11,8 @@ function addToProfile(id, content) {
       id: id,
       comments_count: content.comments_count,
       likes_count: content.likes_count,
-      picture: content.picture
+      picture: content.picture,
+      timestamp: content.timestamp
     }).then(() => {
       user.update({
         posts_count: field.increment(1)
