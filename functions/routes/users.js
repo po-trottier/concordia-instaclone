@@ -9,7 +9,7 @@ const defaultUser = {
   followers_count: 0,
   following: [],
   following_count: 0,
-  liked: [],
+  likes: [],
   name: '',
   picture: '',
   posts_count: 0,
