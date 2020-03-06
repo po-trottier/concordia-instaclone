@@ -33,6 +33,10 @@ This project is meant to be an Instagram clone and was created for Concordia's S
     - Being able to search for Hashtags and see related posts
     - Having a customizable personal profile
     - ~~Having access to the app in French and in English~~ *Will not implement*
+    
+|Step to take|Expected Output|
+|---|---|
+|Do this|Expect that|
 
 ### Technology Stack
 
