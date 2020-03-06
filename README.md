@@ -38,7 +38,12 @@ This project is meant to be an Instagram clone and was created for Concordia's S
     
 |Step to take|Expected Output|
 |---|---|
-|Do this|Expect that|
+|Open the website|Should see a welcome page that lets you login and create a new account|
+|Click the create an account button|Should bring you to a new page that lets you create a new account and set profile details|
+|Create an account|Should log you in after the account creation is succesful and bring you to the feed|
+|Back at the welcome screen, if you fill in your information and click log in|Should log you in after the account creation is succesful and bring you to the feed|
+|On the feed, if you click the like button on a post|The post's like counter should go up if it's not already liked or down if it is. The heart button should also change colors accordingly (red = liked, grey = not liked)|
+|If you click on a post's image|You should be brought to that post's details page where you can see the comments on that post|
 
 ### Technology Stack
 
