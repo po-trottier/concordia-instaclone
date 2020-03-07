@@ -44,6 +44,10 @@ This project is meant to be an Instagram clone and was created for Concordia's S
 |Back at the welcome screen, if you fill in your information and click log in|Should log you in after the account creation is succesful and bring you to the feed|
 |On the feed, if you click the like button on a post|The post's like counter should go up if it's not already liked or down if it is. The heart button should also change colors accordingly (red = liked, grey = not liked)|
 |If you click on a post's image|You should be brought to that post's details page where you can see the comments on that post|
+|On the feed, if you click on the user name or image|You should be brought to that user profile page.|
+|Wherever on the app, if you click on the instagram logo in the banner|You should be brought to the user feed.|
+
+
 
 ### Technology Stack
 
