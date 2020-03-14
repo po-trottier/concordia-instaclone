@@ -14,6 +14,17 @@
             <h3>
               Edit Profile
             </h3>
+            <v-btn
+              color="error"
+              class="ma-2 white--text"
+              @click="logout">
+              Logout
+              <v-icon
+                right
+                dark>
+                mdi-logout
+              </v-icon>
+            </v-btn>
           </v-col>
           <v-col
             cols="12"
@@ -27,11 +38,22 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import UserInfo from './UserInfo.vue';
 
 export default ({
   name: 'EditCard',
-
+  computed: {
+    ...mapGetters('auth', ['loggedIn']),
+  },
+  methods: {
+    logout() {
+      localStorage.clear();
+      // window.location.reload();
+      this.$store.dispatch('auth/setUser', null, { root: true });
+      this.$router.push({ name: 'landing' });
+    },
+  },
   components: {
     appUserInfo: UserInfo,
   },
