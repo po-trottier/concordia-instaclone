@@ -53,6 +53,27 @@
                 :to="{ name: 'signup' }">
                 Create an Account
               </v-btn>
+              <v-btn
+                class="mx-2 mt-4"
+                color="#3B5998"
+                dark
+                large
+                title="Login with facebook account">
+                <v-icon
+                  dark>
+                  mdi-facebook
+                </v-icon>
+              </v-btn>
+              <v-btn class="mx-2 mt-4"
+                 color="#DB4437"
+                 dark
+                 large
+                 title="Login with google account">
+                <v-icon
+                  dark>
+                  mdi-google
+                </v-icon>
+              </v-btn>
             </v-col>
           </v-card-actions>
         </v-card>
