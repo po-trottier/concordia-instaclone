@@ -50,7 +50,7 @@ export default ({
     logout() {
       localStorage.clear();
       // window.location.reload();
-      this.$store.dispatch('auth/setUser', null, { root: true });
+      this.$store.dispatch('auth/setUser', null);
       this.$router.push({ name: 'landing' });
     },
   },
