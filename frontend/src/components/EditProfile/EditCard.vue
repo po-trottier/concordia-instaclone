@@ -49,7 +49,6 @@ export default ({
   methods: {
     logout() {
       localStorage.clear();
-      // window.location.reload();
       this.$store.dispatch('auth/setUser', null);
       this.$router.push({ name: 'landing' });
     },
