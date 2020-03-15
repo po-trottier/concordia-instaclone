@@ -50,17 +50,6 @@ const actions = {
       });
   }),
 
-  updateUser: (context, payload) => new Promise((resolve, reject) => {
-    firebase.firestore().collection('users').doc(payload.uid).set(payload)
-      .then(() => {
-        resolve();
-      })
-      .catch((err) => {
-        console.error(err);
-        reject(err);
-      });
-  }),
-
   setFollowing: (context, payload) => {
     context.commit('mutateFollowingCount', context.state.user.following_count + 1);
     context.commit('mutateAddFollowId', payload);

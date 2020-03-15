@@ -74,6 +74,7 @@ export default {
       email: null,
       password: null,
       user: null,
+      progress: false,
     };
   },
 

@@ -53,7 +53,7 @@ export default ({
     ...mapActions('auth', ['setUser']),
 
     logout() {
-      this.$firebase.auth.logout();
+      this.$firebase.auth().signOut();
       this.setUser(null);
       this.$router.replace({ name: 'landing' });
     },

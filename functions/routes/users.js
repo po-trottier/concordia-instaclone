@@ -28,12 +28,12 @@ function addToDatabase(user) {
   return new Promise((resolve, reject) => {
     // Clone the default user
     const newUser = clone(defaultUser);
-    // Generate a random username
-    const username = ('user_' + user.uid).substr(0, 10);
     // Set proper values
+    newUser.username = ('user_' + user.uid).substr(0, 10);
     newUser.email = user.email;
     newUser.uid = user.uid;
-    newUser.username = username;
+    newUser.name = user.displayName ? user.displayName : '';
+    // Add to database
     users.doc(user.uid).set(newUser)
       .then(() => {
         resolve('User added to the database');
