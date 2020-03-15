@@ -64,11 +64,12 @@
                   mdi-facebook
                 </v-icon>
               </v-btn>
-              <v-btn class="mx-2 mt-4"
-                 color="#DB4437"
-                 dark
-                 large
-                 title="Login with google account">
+              <v-btn
+                class="mx-2 mt-4"
+                color="#DB4437"
+                dark
+                large
+                title="Login with google account">
                 <v-icon
                   dark>
                   mdi-google
