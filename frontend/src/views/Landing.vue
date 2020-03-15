@@ -20,7 +20,8 @@
           </v-card-title>
           <v-card-subtitle class="justify-center text-center pa-0">
             <v-btn
-              color="#3B5998"
+              @click="facebook"
+              color="facebook"
               depressed
               dark
               rounded
@@ -33,8 +34,9 @@
               Sign In with Facebook
             </v-btn>
             <v-btn
+              @click="google"
               class="mt-4"
-              color="#DB4437"
+              color="google"
               depressed
               dark
               rounded
@@ -122,7 +124,67 @@ export default {
   },
 
   methods: {
-    ...mapActions('auth', ['getUser']),
+    ...mapActions('auth', ['getUser', 'updateUser']),
+
+    facebook() {
+      const provider = new this.$firebase.auth.FacebookAuthProvider();
+      this.$firebase.auth().setPersistence(this.$firebase.auth.Auth.Persistence.LOCAL)
+        .then(() => {
+          this.$firebase.auth().signInWithPopup(provider)
+            .then(({ user }) => {
+              this.updateUser({
+                uid: user.uid,
+                picture: user.photoURL,
+                name: user.displayName,
+              })
+                .then(() => {
+                  this.getUser(user.uid)
+                    .then(() => {
+                      this.$router.replace({ name: 'feed' });
+                    })
+                    .catch((err) => {
+                      console.error(err);
+                    });
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+
+    google() {
+      const provider = new this.$firebase.auth.GoogleAuthProvider();
+      this.$firebase.auth().setPersistence(this.$firebase.auth.Auth.Persistence.LOCAL)
+        .then(() => {
+          this.$firebase.auth().signInWithPopup(provider)
+            .then(({ user }) => {
+              this.updateUser({
+                uid: user.uid,
+                picture: user.photoURL,
+                name: user.displayName,
+              })
+                .then(() => {
+                  this.getUser(user.uid)
+                    .then(() => {
+                      this.$router.replace({ name: 'feed' });
+                    })
+                    .catch((err) => {
+                      console.error(err);
+                    });
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
 
     login() {
       this.progress = true;

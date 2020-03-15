@@ -16,6 +16,8 @@ export default new Vuetify({
         error: '#fd1d1d',
         light: '#f7f7f7',
         dark: '#242323',
+        facebook: '#3B5998',
+        google: '#DB4437',
       },
     },
   },

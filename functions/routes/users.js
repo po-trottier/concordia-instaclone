@@ -26,30 +26,21 @@ const fieldsToChange = [
 // Add a new user to the database
 function addToDatabase(user) {
   return new Promise((resolve, reject) => {
-    users.doc(user.uid).get()
-      .then((document) => {
-          if (document.exists) {
-            reject(new Error('The user already exists'));
-          } else {
-            // Clone the default user
-            const newUser = clone(defaultUser);
-            // Generate a random username
-            const username = ('user_' + user.uid).substr(0, 10);
-            // Set proper values
-            newUser.email = user.email;
-            newUser.uid = user.uid;
-            newUser.username = username;
-            users.doc(user.uid).set(newUser)
-              .then(() => {
-                resolve('User added to the database');
-              })
-              .catch((err) => {
-                reject(err);
-              });
-          }
-        }).catch((err) => {
-          reject(err);
-        });
+    // Clone the default user
+    const newUser = clone(defaultUser);
+    // Generate a random username
+    const username = ('user_' + user.uid).substr(0, 10);
+    // Set proper values
+    newUser.email = user.email;
+    newUser.uid = user.uid;
+    newUser.username = username;
+    users.doc(user.uid).set(newUser)
+      .then(() => {
+        resolve('User added to the database');
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
 }
 
