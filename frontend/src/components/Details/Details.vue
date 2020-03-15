@@ -3,12 +3,28 @@
     <v-card
       v-if="getPost"
       flat>
+      <v-card-title>
+        <router-link
+          :to="{ name: 'user', params: { uid: getPost.user } }"
+          class="black--text">
+          <v-avatar
+            size="48"
+            class="mr-2">
+            <v-img :src="profile" />
+          </v-avatar>
+          <span
+            class="sm-font font-weight-medium"
+            style="font-size: 1rem">
+            {{ getPost.username }}
+          </span>
+        </router-link>
+      </v-card-title>
       <v-img
         :src="image"
         id="postImage"
         width="100%"
         aspect-ratio="1" />
-      <app-post-sidebar :profile="profile" />
+      <app-post-sidebar />
     </v-card>
     <v-card v-else>
       <h1>Post Loading</h1>

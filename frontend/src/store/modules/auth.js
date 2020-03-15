@@ -13,7 +13,11 @@ const getters = {
 
 const mutations = {
   mutateUser: (s, payload) => {
-    localStorage.user = JSON.stringify(payload);
+    if (payload) {
+      localStorage.user = JSON.stringify(payload);
+    } else {
+      localStorage.removeItem('user');
+    }
     s.user = payload;
   },
   mutateAddFollowId: (s, payload) => {

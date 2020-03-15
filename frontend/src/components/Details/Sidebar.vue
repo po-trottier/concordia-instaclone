@@ -1,19 +1,5 @@
 <template>
   <div class="pa-6">
-    <router-link
-      :to="{ name: 'user', params: { uid: getPost.user } }"
-      class="black--text">
-      <v-avatar
-        size="48"
-        class="mr-2">
-        <v-img :src="profile" />
-      </v-avatar>
-      <span
-        class="sm-font font-weight-medium"
-        style="font-size: 1rem">
-        {{ getPost.username }}
-      </span>
-    </router-link>
     <v-row
       no-gutters
       class="my-2">
@@ -87,12 +73,6 @@ import Comment from './Comment.vue';
 
 export default {
   name: 'Sidebar',
-  props: {
-    profile: {
-      type: String,
-      required: true,
-    },
-  },
 
   data() {
     return {
@@ -105,6 +85,7 @@ export default {
   computed: {
     ...mapGetters('details', ['getPost']),
     ...mapGetters('auth', ['user']),
+
     time() {
       return timeago.format(this.getPost.timestamp.toDate());
     },
@@ -125,6 +106,7 @@ export default {
   methods: {
     ...mapActions('details', ['addPostComment']),
     ...mapActions('posts', ['likePost', 'unlikePost']),
+
     toggleLike() {
       if (!this.isLiked) {
         this.count++;
