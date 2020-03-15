@@ -9,15 +9,51 @@
           elevation="6"
           class="pa-6 mx-auto my-12"
           style="max-width: 500px;">
-          <v-card-title>
-            <h1 class="mb-6 text-center">
-              Welcome to Instaclone
+          <v-card-title class="justify-center text-center">
+            <h1 class="mb-10 text-center">
+              Welcome to
+              <v-img
+                src="@/assets/text-logo.svg"
+                height="5rem"
+                contain />
             </h1>
           </v-card-title>
+          <v-card-subtitle class="justify-center text-center pa-0">
+            <v-btn
+              color="#3B5998"
+              depressed
+              dark
+              rounded
+              large>
+              <v-icon
+                dark
+                class="mr-3">
+                mdi-facebook
+              </v-icon>
+              Sign In with Facebook
+            </v-btn>
+            <v-btn
+              class="mt-4"
+              color="#DB4437"
+              depressed
+              dark
+              rounded
+              large>
+              <v-icon
+                dark
+                class="mr-3">
+                mdi-google
+              </v-icon>
+              Sign In with Google
+            </v-btn>
+            <p class="md-font my-6">
+              OR
+            </p>
+          </v-card-subtitle>
           <v-card-text>
             <v-text-field
               v-model="email"
-              class="mb-6"
+              class="mb-4"
               outlined
               rounded
               hide-details
@@ -31,7 +67,7 @@
               type="password"
               placeholder="Password" />
           </v-card-text>
-          <v-card-actions>
+          <v-card-actions class="pt-0">
             <v-col class="text-center">
               <v-btn
                 large
@@ -52,28 +88,6 @@
                 rounded
                 :to="{ name: 'signup' }">
                 Create an Account
-              </v-btn>
-              <v-btn
-                class="mx-2 mt-4"
-                color="#3B5998"
-                dark
-                large
-                title="Login with facebook account">
-                <v-icon
-                  dark>
-                  mdi-facebook
-                </v-icon>
-              </v-btn>
-              <v-btn
-                class="mx-2 mt-4"
-                color="#DB4437"
-                dark
-                large
-                title="Login with google account">
-                <v-icon
-                  dark>
-                  mdi-google
-                </v-icon>
               </v-btn>
             </v-col>
           </v-card-actions>
