@@ -30,7 +30,7 @@ const mutations = {
 };
 
 const actions = {
-  queryPosts: (context) => {
+  queryPosts: context => new Promise((resolve, reject) => {
     const user = context.rootGetters['auth/user'];
     const following = clone(user.following);
     following.push(user.uid);
@@ -45,11 +45,13 @@ const actions = {
           results.push(doc.data());
         });
         context.commit('mutatePosts', results);
+        resolve();
       })
       .catch((err) => {
         console.error(err);
+        reject(err);
       });
-  },
+  }),
 
   addPost: (context, payload) => new Promise((resolve, reject) => {
     const results = clone(context.getters.getPosts);
