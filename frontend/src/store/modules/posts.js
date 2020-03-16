@@ -30,11 +30,15 @@ const mutations = {
 };
 
 const actions = {
-  queryPosts: (context, payload) => {
-    // TODO Payload should be a list of the users followed so we can query the proper posts
-    console.log(payload);
+  queryPosts: (context) => {
+    const user = context.rootGetters['auth/user'];
+    const following = clone(user.following);
+    following.push(user.uid);
 
-    firebase.firestore().collection('posts').orderBy('timestamp', 'desc').get()
+    firebase.firestore().collection('posts')
+      .where('user', 'in', following)
+      .orderBy('timestamp', 'desc')
+      .get()
       .then((snapshot) => {
         const results = [];
         snapshot.forEach((doc) => {
