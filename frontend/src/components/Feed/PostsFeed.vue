@@ -6,8 +6,11 @@
         :key="post.id"
         :content="post" />
     </div>
-    <div v-else>
+    <div v-else-if="loading">
       <h1>Posts Loading</h1>
+    </div>
+    <div v-else>
+      <h1>No Posts Found</h1>
     </div>
   </div>
 </template>
@@ -19,6 +22,12 @@ import Post from './Post.vue';
 export default {
   name: 'PostsFeed',
 
+  data() {
+    return {
+      loading: false,
+    };
+  },
+
   computed: {
     ...mapGetters('posts', ['getPosts']),
   },
@@ -28,7 +37,10 @@ export default {
   },
 
   mounted() {
-    this.queryPosts();
+    this.loading = true;
+    this.queryPosts().finally(() => {
+      this.loading = false;
+    });
   },
 
   components: {

@@ -17,20 +17,25 @@ const defaultPost = {
 
 const state = {
   posts: [],
+  suggested: [],
 };
 
 const getters = {
   getPosts: s => s.posts,
+  getSuggested: s => s.suggested,
 };
 
 const mutations = {
   mutatePosts: (s, payload) => {
     s.posts = payload;
   },
+  mutateSuggested: (s, payload) => {
+    s.suggested = payload;
+  },
 };
 
 const actions = {
-  queryPosts: (context) => {
+  queryPosts: context => new Promise((resolve, reject) => {
     const user = context.rootGetters['auth/user'];
     const following = clone(user.following);
     following.push(user.uid);
@@ -45,11 +50,13 @@ const actions = {
           results.push(doc.data());
         });
         context.commit('mutatePosts', results);
+        resolve();
       })
       .catch((err) => {
         console.error(err);
+        reject(err);
       });
-  },
+  }),
 
   addPost: (context, payload) => new Promise((resolve, reject) => {
     const results = clone(context.getters.getPosts);
@@ -162,6 +169,26 @@ const actions = {
         reject(err);
       });
   }),
+
+  querySuggested: (context) => {
+    firebase.firestore().collection('users')
+      .limit(5)
+      .orderBy('followers_count', 'desc')
+      .get()
+      .then((snapshot) => {
+        const results = [];
+        snapshot.forEach((doc) => {
+          results.push({
+            username: doc.data().username,
+            uid: doc.data().uid,
+          });
+        });
+        context.commit('mutateSuggested', results);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
 };
 
 export default {
