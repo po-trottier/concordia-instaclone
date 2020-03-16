@@ -7,34 +7,44 @@
         Suggested Accounts
       </h3>
       <v-divider class="my-3" />
-      <v-list class="pa-0 mt-n2">
+      <v-list
+        v-if="getSuggested.length > 0"
+        class="pa-0 mt-n2">
         <app-suggested-item
-          v-for="i in 5"
-          :key="i"
-          :user="user" />
+          v-for="suggested in getSuggested"
+          :key="suggested.uid"
+          :user="suggested" />
       </v-list>
+      <p
+        v-else
+        class="ma-0">
+        No accounts found
+      </p>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import SuggestedItem from './SuggestedItem.vue';
 
 export default {
   name: 'Suggested',
 
-  data() {
-    return {
-      user: { username: 'username', uid: '1234' },
-    };
+  computed: {
+    ...mapGetters('posts', ['getSuggested']),
+  },
+
+  methods: {
+    ...mapActions('posts', ['querySuggested']),
   },
 
   components: {
     appSuggestedItem: SuggestedItem,
   },
+
+  created() {
+    this.querySuggested();
+  },
 };
 </script>
-
-<style scoped>
-
-</style>

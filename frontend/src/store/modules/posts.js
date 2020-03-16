@@ -17,15 +17,20 @@ const defaultPost = {
 
 const state = {
   posts: [],
+  suggested: [],
 };
 
 const getters = {
   getPosts: s => s.posts,
+  getSuggested: s => s.suggested,
 };
 
 const mutations = {
   mutatePosts: (s, payload) => {
     s.posts = payload;
+  },
+  mutateSuggested: (s, payload) => {
+    s.suggested = payload;
   },
 };
 
@@ -164,6 +169,26 @@ const actions = {
         reject(err);
       });
   }),
+
+  querySuggested: (context) => {
+    firebase.firestore().collection('users')
+      .limit(5)
+      .orderBy('followers_count', 'desc')
+      .get()
+      .then((snapshot) => {
+        const results = [];
+        snapshot.forEach((doc) => {
+          results.push({
+            username: doc.data().username,
+            uid: doc.data().uid,
+          });
+        });
+        context.commit('mutateSuggested', results);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
 };
 
 export default {
