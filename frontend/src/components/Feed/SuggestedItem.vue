@@ -1,13 +1,15 @@
 <template>
-  <v-list-item class="px-0">
+  <v-list-item
+    v-if="suggested.uid !== user.uid"
+    class="px-0">
     <v-row
       no-gutters
       align="center">
       <router-link
-        :to="{ name: 'user', params: { uid: user.uid } }"
+        :to="{ name: 'user', params: { uid: suggested.uid } }"
         class="font-weight-medium dark--text">
         <p class="ma-0">
-          {{ user.username }}
+          {{ suggested.username }}
         </p>
       </router-link>
       <v-btn
@@ -16,7 +18,7 @@
         small
         depressed
         :color="following ? 'light' : 'primary'"
-        @click="following = !following">
+        @click="toggleFollow">
         {{ following ? 'Unfollow' : 'Follow' }}
       </v-btn>
     </v-row>
@@ -24,20 +26,42 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'SuggestedItem',
 
   props: {
-    user: {
+    suggested: {
       type: Object,
       required: true,
     },
   },
 
-  data() {
-    return {
-      following: false,
-    };
+  methods: {
+    ...mapActions('profile', ['followUser', 'unfollowUser']),
+
+    toggleFollow() {
+      if (this.following) {
+        this.unfollow();
+      } else {
+        this.follow();
+      }
+    },
+    follow() {
+      this.followUser(this.suggested.uid);
+    },
+    unfollow() {
+      this.unfollowUser(this.suggested.uid);
+    },
+  },
+
+  computed: {
+    ...mapGetters('auth', ['user']),
+
+    following() {
+      return this.user.following.includes(this.suggested.uid);
+    },
   },
 };
 </script>
