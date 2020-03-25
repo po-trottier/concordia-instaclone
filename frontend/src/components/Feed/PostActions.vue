@@ -15,7 +15,21 @@
       <span
         class="xs-font font-weight-bold text-uppercase my-auto"
         style="opacity: 0.8;">
-        {{ count }} {{ count > 1 ? 'likes' : 'like' }}
+        {{ likes }} {{ likes > 1 ? 'likes' : 'like' }}
+      </span>
+      <v-btn
+        :to="{ name: 'post', params: { id: content.id } }"
+        icon
+        class="ml-4 mr-1"
+        color="grey">
+        <v-icon>
+          mdi-comment-outline
+        </v-icon>
+      </v-btn>
+      <span
+        class="xs-font font-weight-bold text-uppercase my-auto"
+        style="opacity: 0.8;">
+        {{ comments }} {{ comments > 1 ? 'comments' : 'comment' }}
       </span>
     </v-row>
     <div
@@ -52,8 +66,8 @@ export default {
 
   data() {
     return {
-      comment: null,
-      count: this.content.likes_count,
+      likes: this.content.likes_count,
+      comments: this.content.comments_count,
     };
   },
 
@@ -71,10 +85,10 @@ export default {
     ...mapActions('posts', ['likePost', 'unlikePost']),
     toggleLike() {
       if (!this.isLiked) {
-        this.count++;
+        this.likes++;
         this.likePost(this.content.id);
       } else {
-        this.count--;
+        this.likes--;
         this.unlikePost(this.content.id);
       }
     },
