@@ -106,11 +106,12 @@
         sm="9"
         md="10">
         <v-btn
+          @click="submit"
+          :loading="loading"
           depressed
           block
           dark
           class="mt-4"
-          @click="submit"
           color="blue">
           Save
         </v-btn>
@@ -120,7 +121,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import isUrl from 'is-url';
 
 export default ({
@@ -128,6 +129,7 @@ export default ({
 
   data() {
     return {
+      loading: false,
       name: '',
       username: '',
       website: '',
@@ -143,11 +145,42 @@ export default ({
   },
 
   methods: {
+    ...mapActions('auth', ['updateProfile']),
+
     submit() {
+      this.loading = true;
       this.validate();
-      console.log({
-        name: this.name, username: this.username, website: this.website, bio: this.bio,
-      });
+      this.$firebase.firestore().collection('users').where('username', '==', this.username).limit(1)
+        .get()
+        .then((collection) => {
+          if (!collection.empty && collection.docs[0].data().uid !== this.user.uid) {
+            console.error('Username is already in use');
+            this.loading = false;
+            return;
+          }
+          this.$firebase.firestore().collection('users').doc(this.user.uid)
+            .update({
+              name: this.name,
+              username: this.username,
+              website: this.website,
+              bio: this.bio,
+            })
+            .then(() => {
+              this.updateProfile({
+                name: this.name,
+                username: this.username,
+                website: this.website,
+                bio: this.bio,
+              });
+            })
+            .finally(() => {
+              this.loading = false;
+            });
+        })
+        .catch((err) => {
+          console.error(err);
+          this.loading = false;
+        });
     },
 
     validate() {

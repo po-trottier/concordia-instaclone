@@ -26,8 +26,21 @@
         aspect-ratio="1" />
       <app-post-sidebar />
     </v-card>
-    <v-card v-else>
-      <h1>Post Loading</h1>
+    <v-card
+      v-else
+      class="pa-6">
+      <v-card-title class="justify-center">
+        <h2 class="text-center mb-2">
+          Post Loading...
+        </h2>
+      </v-card-title>
+      <v-card-subtitle class="text-center">
+        <v-progress-circular
+          indeterminate
+          width="8"
+          size="128"
+          color="primary" />
+      </v-card-subtitle>
     </v-card>
   </div>
 </template>

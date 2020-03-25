@@ -27,10 +27,11 @@
               <v-btn
                 small
                 depressed
-                class="my-2"
-                width="100%"
                 text
+                block
+                class="my-2"
                 color="primary"
+                :loading="uploading"
                 @click="$refs.fileInput.click()">
                 Upload Photo
               </v-btn>
@@ -39,10 +40,11 @@
             <v-btn
               small
               depressed
-              class="my-2"
-              width="100%"
               text
+              block
+              class="my-2"
               color="red lighten-1"
+              :loading="removing"
               @click="remove">
               Remove Current Photo
             </v-btn>
@@ -64,24 +66,46 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default ({
   name: 'ChangeDP',
   data() {
     return {
       value: false,
-      progress: false,
-      file: null,
-      data: null,
+      uploading: false,
+      removing: false,
     };
   },
+
   methods: {
+    ...mapActions('auth', ['uploadDP', 'removeDP']),
+
     remove() {
-      console.log('Removed picture');
-      this.value = false;
+      this.removing = true;
+      this.removeDP()
+        .then(() => {
+          this.value = false;
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .finally(() => {
+          this.removing = false;
+        });
     },
-    upload() {
-      console.log('Uploaded picture');
-      this.value = false;
+    upload({ target }) {
+      this.uploading = true;
+      this.uploadDP(target.files[0])
+        .then(() => {
+          this.value = false;
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .finally(() => {
+          this.uploading = false;
+        });
     },
   },
 });

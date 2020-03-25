@@ -1,6 +1,8 @@
 import firebase from 'firebase';
 import clone from 'clone-deep';
 
+import uploadUtils from '@/utils/uploadUtils';
+
 const state = {
   user: null,
 };
@@ -46,6 +48,80 @@ const actions = {
       })
       .catch((err) => {
         console.error(err);
+        reject(err);
+      });
+  }),
+
+  updateProfile: (context, payload) => {
+    const user = clone(context.getters.user);
+    Object.entries(payload).forEach((entry) => {
+      // eslint-disable-next-line prefer-destructuring
+      user[entry[0]] = entry[1];
+    });
+    context.commit('mutateUser', user);
+  },
+
+  uploadDP: (context, payload) => new Promise((resolve, reject) => {
+    // Rename File to Unique ID
+    const extension = payload.name.split('.').pop();
+    const file = new File(
+      [payload],
+      `${context.getters.user.uid}.${extension}`,
+      { type: payload.type },
+    );
+    // Delete Existing Photo
+    firebase.storage().ref().child(`users/${context.getters.user.uid}`)
+      .delete()
+      .then(() => {
+        // Upload Photo
+        uploadUtils.upload(context, file)
+          .then(() => {
+            resolve();
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      })
+      .catch((error) => {
+        // If No Existing Photo Simply Upload
+        if (error.code === 'storage/object-not-found') {
+          uploadUtils.upload(context, file)
+            .then(() => {
+              resolve();
+            })
+            .catch((err) => {
+              reject(err);
+            });
+        } else {
+          reject(error);
+        }
+      });
+  }),
+
+  removeDP: context => new Promise((resolve, reject) => {
+    // Delete Photo
+    firebase.storage().ref().child(`users/${context.getters.user.uid}`)
+      .delete()
+      .then(() => {
+        console.log('Picture was Removed!');
+        // Remove from the Database
+        firebase.firestore().collection('users').doc(context.getters.user.uid)
+          .update({
+            picture: '',
+          })
+          .then(() => {
+            console.log('DP was removed from the Database!');
+            context.dispatch('updateProfile', {
+              picture: '',
+            });
+            // Resolve the Promise
+            resolve();
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      })
+      .catch((err) => {
         reject(err);
       });
   }),
