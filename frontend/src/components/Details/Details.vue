@@ -2,7 +2,8 @@
   <div>
     <v-card
       v-if="getPost"
-      flat>
+      flat
+      outlined>
       <v-card-title>
         <router-link
           :to="{ name: 'user', params: { uid: getPost.user } }"
@@ -28,17 +29,19 @@
     </v-card>
     <v-card
       v-else
+      flat
+      outlined
       class="pa-6">
       <v-card-title class="justify-center">
-        <h2 class="text-center mb-2">
+        <h2 class="text-center mb-6">
           Post Loading...
         </h2>
       </v-card-title>
       <v-card-subtitle class="text-center">
         <v-progress-circular
           indeterminate
-          width="8"
-          size="128"
+          width="4"
+          size="64"
           color="primary" />
       </v-card-subtitle>
     </v-card>

@@ -6,12 +6,40 @@
         :key="post.id"
         :content="post" />
     </div>
-    <div v-else-if="loading">
-      <h1>Posts Loading</h1>
-    </div>
-    <div v-else>
-      <h1>No Posts Found</h1>
-    </div>
+    <v-card
+      v-else-if="loading"
+      flat
+      outlined
+      class="pa-6">
+      <v-card-title class="justify-center">
+        <h2 class="text-center mb-6">
+          Post Loading...
+        </h2>
+      </v-card-title>
+      <v-card-subtitle class="text-center">
+        <v-progress-circular
+          indeterminate
+          width="4"
+          size="64"
+          color="primary" />
+      </v-card-subtitle>
+    </v-card>
+    <v-card
+      v-else
+      flat
+      outlined
+      class="pa-6">
+      <v-card-title class="justify-center">
+        <h2 class="text-center mb-6">
+          No Posts Found...
+        </h2>
+      </v-card-title>
+      <v-card-subtitle>
+        <p class="md-font mb-0 text-center">
+          Please follow more users to see their posts!
+        </p>
+      </v-card-subtitle>
+    </v-card>
   </div>
 </template>
 
