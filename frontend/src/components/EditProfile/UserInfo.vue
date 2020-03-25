@@ -47,18 +47,38 @@ export default ({
 
   computed: {
     ...mapGetters('auth', ['user']),
+
+    imageUrl() {
+      return this.user.picture;
+    },
+  },
+
+  watch: {
+    imageUrl() {
+      this.getImage();
+    },
+  },
+
+  methods: {
+    getImage() {
+      if (!this.user.picture) {
+        this.image = placeholder;
+        return;
+      }
+      const storage = this.$firebase.storage();
+      const imageRef = storage.refFromURL(this.user.picture);
+      imageRef.getDownloadURL()
+        .then((url) => {
+          this.image = url;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 
   created() {
-    const storage = this.$firebase.storage();
-    const imageRef = storage.refFromURL(this.user.picture);
-    imageRef.getDownloadURL()
-      .then((url) => {
-        this.image = url;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.getImage();
   },
 
   components: {
