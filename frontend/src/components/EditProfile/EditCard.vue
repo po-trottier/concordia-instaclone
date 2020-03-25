@@ -20,7 +20,7 @@
               dark
               text
               color="error"
-              class="mt-4"
+              class="mt-4 px-2"
               @click="logout">
               Sign Out
               <v-icon
@@ -35,6 +35,24 @@
             cols="12"
             sm="9">
             <app-user-info />
+            <div class="px-6 show-mobile">
+              <v-btn
+                block
+                depressed
+                dark
+                text
+                color="error"
+                class="mt-6"
+                @click="logout">
+                Sign Out
+                <v-icon
+                  small
+                  right
+                  dark>
+                  mdi-logout
+                </v-icon>
+              </v-btn>
+            </div>
           </v-col>
         </v-row>
       </v-card-text>

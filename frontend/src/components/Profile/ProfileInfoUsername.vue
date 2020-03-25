@@ -22,11 +22,11 @@
       </v-btn>
       <v-btn
         icon
-        color="light darken-3"
+        color="grey darken-2"
         class="ml-2 show-mobile"
         :to="{ name: 'edit' }">
         <v-icon>
-          mdi-settings
+          mdi-cog-outline
         </v-icon>
       </v-btn>
     </div>

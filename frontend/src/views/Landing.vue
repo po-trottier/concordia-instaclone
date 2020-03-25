@@ -4,11 +4,12 @@
       src="https://source.unsplash.com/collection/151521/3840x2160"
       class="fill-screen" />
     <v-row
+      no-gutters
       class="fill-height"
       align="center"
       justify="center">
       <v-container>
-        <v-form @submit.prevent="login">
+        <v-form @submit.prevent="login" class="px-4">
           <v-card
             elevation="6"
             class="pa-6 mx-auto my-12"
@@ -232,7 +233,7 @@ export default {
 <style scoped>
   .full-size {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
   }
 
   .fill-screen {
