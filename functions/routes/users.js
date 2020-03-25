@@ -19,7 +19,7 @@ const defaultUser = {
 };
 
 const fieldsToChange = [
-  'picture',
+  'user_picture',
   'username'
 ];
 
@@ -46,12 +46,16 @@ function addToDatabase(user) {
 
 // Edit user information
 function editInformation(id, before, after) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const changes = [];
     // Determine which properties changed
     for (let [key, value] of Object.entries(before)) {
       if (after[key] !== value) {
-        changes.push(key);
+        if (key === 'picture') {
+          changes.push('user_picture');
+        } else {
+          changes.push(key);
+        }
       }
     }
     // If nothing changed return
@@ -62,39 +66,64 @@ function editInformation(id, before, after) {
     // Change every property that changed
     changes.forEach((item) => {
       if (fieldsToChange.includes(item)) {
-        updateField(item, before.uid, after.picture)
-          .then(() => {
-            resolve(item + ' Updated');
-          })
+        updateField(item, before.uid, after[item === 'user_picture' ? 'picture' : item])
           .catch((err) => {
-            reject(err);
+            console.error(err);
           });
       } else {
         resolve('Nothing changed');
       }
     });
+    resolve('Some items were modified');
   });
 }
 
-function updateField(key, before, after) {
+function updateField(key, uid, value) {
+  console.log('Updating ' + key + ' for ' + uid);
   return new Promise((resolve, reject) => {
     // Query all posts and update the proper field
-    posts.where('uid', '==', before).get()
+    posts.get()
       .then((snapshot) => {
         if (snapshot.empty) {
-          reject(new Error('User not found'));
+          resolve();
           return;
         }
         snapshot.forEach(doc => {
-          const newVal = {};
-          newVal[key] = after;
-          posts.doc(doc.id).update(newVal)
-            .then(() => {
-              resolve();
+          if (doc.data().user === uid) {
+            const newVal = {};
+            newVal[key] = value;
+            posts.doc(doc.id).update(newVal)
+              .then(() => {
+                resolve();
+              })
+              .catch((err) => {
+                reject(err);
+              });
+          }
+          posts.doc(doc.id).collection('comments')
+            .where('user', '==', uid)
+            .get()
+            .then((collection) => {
+              if (collection.empty) {
+                resolve();
+                return;
+              }
+              collection.forEach((elem) => {
+                const newVal = {};
+                newVal[key] = value;
+                posts.doc(doc.id).collection('comments').doc(elem.id)
+                  .update(newVal)
+                  .then(() => {
+                    resolve();
+                  })
+                  .catch((err) => {
+                    reject(err);
+                  });
+              });
             })
             .catch((err) => {
               reject(err);
-            });
+            })
         });
       })
       .catch((err) => {

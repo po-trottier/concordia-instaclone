@@ -70,6 +70,10 @@ const actions = {
       { type: payload.type },
     );
     // Delete Existing Photo
+    firebase.firestore().collection('users').doc(context.getters.user.uid)
+      .update({
+        picture: '',
+      });
     firebase.storage().ref().child(`users/${context.getters.user.uid}`)
       .delete()
       .then(() => {
