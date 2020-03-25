@@ -28,10 +28,10 @@ This project is meant to be an Instagram clone and was created for Concordia's S
     - ~~Being able to create an account~~
     - ~~Being able to comment on the post~~
     - ~~Being able to log in using Google and Facebook~~
-    - Being able to add a description with Hashtags to the post
+    - ~~Being able to add a description with Hashtags to the post~~
     - ~~Being able to search for users~~
-    - Being able to search for Hashtags and see related posts
     - Having a customizable personal profile
+    - ~~Being able to search for Hashtags and see related posts~~ *Will not implement*
     - ~~Having access to the app in French and in English~~ *Will not implement*
     
 ### Acceptance Tests    
