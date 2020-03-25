@@ -103,14 +103,12 @@ const actions = {
     firebase.storage().ref().child(`users/${context.getters.user.uid}`)
       .delete()
       .then(() => {
-        console.log('Picture was Removed!');
         // Remove from the Database
         firebase.firestore().collection('users').doc(context.getters.user.uid)
           .update({
             picture: '',
           })
           .then(() => {
-            console.log('DP was removed from the Database!');
             context.dispatch('updateProfile', {
               picture: '',
             });

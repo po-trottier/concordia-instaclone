@@ -54,7 +54,7 @@ export default {
         this.image = url;
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
     // If the user has a profile picture, get it
     if (this.content.user_picture) {
@@ -64,7 +64,7 @@ export default {
           this.profile = url;
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     }
   },

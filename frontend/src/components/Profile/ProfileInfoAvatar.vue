@@ -35,7 +35,7 @@ export default ({
           this.image = url;
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     },
   },

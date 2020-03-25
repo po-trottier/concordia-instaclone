@@ -54,7 +54,7 @@ export default {
           this.values = users;
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         })
         .finally(() => {
           this.loading = false;

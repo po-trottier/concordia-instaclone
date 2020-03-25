@@ -77,8 +77,6 @@ const actions = {
     // Upload Photo
     firebase.storage().ref().child(`posts/${name}.${extension}`).put(file)
       .then(({ ref }) => {
-        console.log('Picture was Uploaded!');
-
         // Set important values for default post
         post.timestamp = firebase.firestore.FieldValue.serverTimestamp();
         post.picture = `gs://${ref.bucket}/${ref.fullPath}`;
@@ -94,12 +92,9 @@ const actions = {
         // Add the post to the Database
         firebase.firestore().collection('posts').doc(name).set(post)
           .then(() => {
-            console.log('Post was added to the Database!');
-
             // Add the post at the top of the current posts
             results.splice(0, 0, defaultPost);
             context.commit('mutatePosts', results);
-
             // Resolve the Promise
             resolve();
           })
