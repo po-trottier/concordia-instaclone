@@ -13,7 +13,7 @@
         <app-suggested-item
           v-for="suggested in getSuggested"
           :key="suggested.uid"
-          :user="suggested" />
+          :suggested="suggested" />
       </v-list>
       <p
         v-else
