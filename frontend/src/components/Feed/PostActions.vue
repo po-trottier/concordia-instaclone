@@ -22,9 +22,9 @@
       class="px-3"
       style="width: 100%;">
       <v-row no-gutters>
-        <p class="mb-2">
-          {{ content.description }}
-        </p>
+        <p
+          class="mb-2"
+          v-html="descriptionWithTags" />
       </v-row>
       <v-row no-gutters>
         <p
@@ -59,6 +59,9 @@ export default {
 
   computed: {
     ...mapGetters('auth', ['user']),
+    descriptionWithTags() {
+      return this.content.description.replace(/(^|\s)(#[a-zA-Z\d-]+)/ig, "$1<a href='#$2'>$2</a>");
+    },
     time() {
       return timeago.format(this.content.timestamp.toDate());
     },
