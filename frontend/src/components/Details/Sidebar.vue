@@ -22,8 +22,9 @@
     </v-row>
     <div class="mb-4">
       <p
-        class="mb-2"
-        v-html="descriptionWithTags" />
+        class="mb-2">
+        {{ getPost.description }}
+      </p>
       <p
         class="xs-font"
         style="opacity: 0.6;">

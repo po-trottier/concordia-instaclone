@@ -49,7 +49,6 @@ const actions = {
         snapshot.forEach((doc) => {
           results.push(doc.data());
         });
-        console.log(results);
         context.commit('mutatePosts', results);
         resolve();
       })

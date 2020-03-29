@@ -93,7 +93,6 @@ export default {
     ...mapActions('posts', ['addPost']),
 
     upload() {
-      // console.log(this.getHashTags(this.description));
       this.progress = true;
       this.addPost({
         file: this.file,
@@ -101,11 +100,13 @@ export default {
         description: this.description,
       })
         .then(() => {
-          this.progress = false;
           this.$router.push({ name: 'feed' });
         })
         .catch((err) => {
           console.error(err);
+        })
+        .finally(() => {
+          this.progress = false;
         });
     },
     getHashTags(string) {
@@ -121,8 +122,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
   .upload-bg{
-    background: linear-gradient(90deg, rgba(83,150,236,1) 0%, rgba(147,83,236,1) 100%);
+    background-image: url("https://source.unsplash.com/collection/151521/3840x2160");
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 </style>

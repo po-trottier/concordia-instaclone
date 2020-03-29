@@ -23,8 +23,9 @@
       style="width: 100%;">
       <v-row no-gutters>
         <p
-          class="mb-2"
-          v-html="descriptionWithTags" />
+          class="mb-2">
+          {{ content.description }}
+        </p>
       </v-row>
       <v-row no-gutters>
         <p
