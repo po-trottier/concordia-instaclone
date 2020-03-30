@@ -75,7 +75,7 @@ const actions = {
     );
 
     // Upload Photo
-    firebase.storage().ref().child(`posts/${name}.${extension}`).put(file)
+    firebase.storage().ref().child(`posts/${name}`).put(file)
       .then(({ ref }) => {
         // Set important values for default post
         post.timestamp = firebase.firestore.FieldValue.serverTimestamp();
