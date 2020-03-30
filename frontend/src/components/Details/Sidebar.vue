@@ -21,8 +21,7 @@
       </span>
     </v-row>
     <div class="mb-4">
-      <p
-        class="mb-2">
+      <p class="mb-2">
         {{ getPost.description }}
       </p>
       <p
@@ -86,10 +85,6 @@ export default {
   computed: {
     ...mapGetters('details', ['getPost']),
     ...mapGetters('auth', ['user']),
-
-    descriptionWithTags() {
-      return this.getPost.description.replace(/(^|\s)(#[a-zA-Z\d-]+)/ig, "$1<a href='#$2'>$2</a>");
-    },
     time() {
       return timeago.format(this.getPost.timestamp.toDate());
     },
