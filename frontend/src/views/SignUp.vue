@@ -8,14 +8,14 @@
       <v-form
         @submit.prevent="verify"
         v-model="valid"
-        class="px-4">
+        class="px-4"
+        style="width: 100%">
         <v-card
           elevation="6"
-          class="pa-6 my-12 justify-center"
-          width="100vw"
+          class="mx-auto pa-6 my-12 justify-center"
+          width="100%"
           max-width="600">
-          <v-card-title
-            class="justify-center">
+          <v-card-title class="justify-center">
             <h1 class="text-center">
               Create an Account
             </h1>
@@ -50,7 +50,7 @@
               outlined
               hide-details
               dense
-              v-model="user"
+              v-model="username"
               class="mb-4"
               type="text"
               placeholder="Username"
@@ -127,6 +127,8 @@
 
 <script>
 import isEmail from 'is-email';
+import { mapActions } from 'vuex';
+import isUrl from 'is-url';
 
 export default {
   name: 'SignUp',
@@ -139,7 +141,7 @@ export default {
       error: 'OOPS! Something went wrong...',
       email: null,
       password: null,
-      user: null,
+      username: null,
       name: null,
       bio: null,
       website: null,
@@ -156,10 +158,26 @@ export default {
   },
 
   methods: {
+    ...mapActions('auth', ['getUser', 'updateProfile']),
+
     verify() {
       this.progress = true;
+
+      this.username = this.username.trim().toLowerCase().replace(/ /gi, '-').replace(/--/gi, '-');
+      this.name = this.name ? this.name.trim() : null;
+      this.website = this.website ? this.website.trim().toLowerCase() : null;
+      this.bio = this.bio ? this.bio.trim() : null;
+
+      if (this.website && this.website.substring(0, 8) !== 'https://' && this.website.substring(0, 7) !== 'http://') {
+        this.website = `https://${this.website}`;
+      }
+
+      if (!isUrl(this.website)) {
+        this.website = null;
+      }
+
       this.$firebase.firestore().collection('users')
-        .where('username', '==', this.user)
+        .where('username', '==', this.username)
         .limit(1)
         .get()
         .then((snapshot) => {
@@ -177,20 +195,44 @@ export default {
           this.snackbar = true;
         });
     },
+
     signUp() {
       this.$firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-        .then((auth) => {
-          console.log(auth);
-          this.$router.replace({ name: 'feed' });
+        .then(({ user }) => {
+          this.getDetails(user.uid).then(() => {
+            this.progress = false;
+          });
         })
         .catch((err) => {
-          console.error(err);
+          this.progress = false;
           this.error = err.message;
           this.snackbar = true;
-        })
-        .finally(() => {
-          this.progress = false;
         });
+    },
+
+    getDetails(uid) {
+      return new Promise((resolve) => {
+        this.getUser(uid)
+          .then(() => {
+            const values = {
+              username: this.username,
+              bio: this.bio ? this.bio : '',
+              name: this.name ? this.name : '',
+              website: this.website ? this.website : '',
+            };
+            this.$firebase.firestore().collection('users').doc(uid).update(values);
+            this.updateProfile(values);
+            this.$router.replace({ name: 'feed' });
+            resolve();
+          })
+          .catch(() => {
+            setTimeout(() => {
+              this.getDetails(uid).then(() => {
+                resolve();
+              });
+            }, 1000);
+          });
+      });
     },
   },
 };
