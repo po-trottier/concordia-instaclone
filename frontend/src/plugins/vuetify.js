@@ -13,7 +13,7 @@ export default new Vuetify({
         info: '#5396ec',
         success: '#405de6',
         warning: '#f77737',
-        error: '#fd1d1d',
+        error: '#eb5454',
         light: '#f7f7f7',
         dark: '#242323',
         facebook: '#3B5998',

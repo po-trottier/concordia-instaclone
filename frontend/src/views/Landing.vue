@@ -9,7 +9,9 @@
       align="center"
       justify="center">
       <v-container>
-        <v-form @submit.prevent="login" class="px-4">
+        <v-form
+          @submit.prevent="login"
+          class="px-4">
           <v-card
             elevation="6"
             class="pa-6 mx-auto my-12"
