@@ -8,7 +8,7 @@ const defaultPost = {
   id: null,
   likes_count: 0,
   picture: null,
-  tags: ['test'],
+  tags: [],
   timestamp: null,
   user: '',
   user_picture: '',
@@ -82,6 +82,7 @@ const actions = {
         post.picture = `gs://${ref.bucket}/${ref.fullPath}`;
         post.id = name;
         post.description = payload.description;
+        post.tags = payload.tags;
 
         // Get the current user's info
         const user = context.rootGetters['auth/user'];

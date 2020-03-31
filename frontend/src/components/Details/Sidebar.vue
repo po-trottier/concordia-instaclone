@@ -85,7 +85,6 @@ export default {
   computed: {
     ...mapGetters('details', ['getPost']),
     ...mapGetters('auth', ['user']),
-
     time() {
       return timeago.format(this.getPost.timestamp.toDate());
     },
