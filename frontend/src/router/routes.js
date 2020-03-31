@@ -45,6 +45,13 @@ export default [
     },
   },
   {
+    path: '/account/password/reset',
+    name: 'resetpass',
+    components: {
+      default: () => import(/* webpackChunkName: "signup" */ '@/views/ForgotPassword.vue'),
+    },
+  },
+  {
     path: '/user/:uid',
     name: 'user',
     components: {

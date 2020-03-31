@@ -100,6 +100,14 @@
                   :to="{ name: 'signup' }">
                   Create an Account
                 </v-btn>
+                <v-btn
+                  large
+                  block
+                  text
+                  rounded
+                  :to="{ name: 'resetpass' }">
+                  Forgot Password?
+                </v-btn>
               </v-col>
             </v-card-actions>
           </v-card>
