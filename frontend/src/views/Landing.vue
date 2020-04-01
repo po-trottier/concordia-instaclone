@@ -114,6 +114,20 @@
         </v-form>
       </v-container>
     </v-row>
+    <v-snackbar
+      v-model="snackbar"
+      bottom
+      color="error"
+      class="mb-6"
+      style="position:fixed;">
+      <span class="white--text">{{ error }}</span>
+      <v-btn
+        dark
+        text
+        @click="snackbar = false">
+        Close
+      </v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -124,11 +138,13 @@ export default {
   name: 'Landing',
   data() {
     return {
+      snackbar: false,
       email: null,
       password: null,
       progress: false,
       fbProgress: false,
       googleProgress: false,
+      error: 'Sorry, your login information was incorrect.',
     };
   },
 
@@ -159,11 +175,13 @@ export default {
             })
             .catch((err) => {
               this.fbProgress = false;
+              this.snackbar = true;
               console.error(err);
             });
         })
         .catch((err) => {
           this.fbProgress = false;
+          this.snackbar = true;
           console.error(err);
         });
     },
@@ -181,11 +199,13 @@ export default {
             })
             .catch((err) => {
               this.googleProgress = false;
+              this.snackbar = true;
               console.error(err);
             });
         })
         .catch((err) => {
           this.googleProgress = false;
+          this.snackbar = true;
           console.error(err);
         });
     },
@@ -205,11 +225,13 @@ export default {
             })
             .catch((err) => {
               this.progress = false;
+              this.snackbar = true;
               console.error(err);
             });
         })
         .catch((err) => {
           this.progress = false;
+          this.snackbar = true;
           console.error(err);
         });
     },
