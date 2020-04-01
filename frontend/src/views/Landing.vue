@@ -105,7 +105,7 @@
                   block
                   text
                   rounded
-                  :to="{ name: 'resetpass' }">
+                  :to="{ name: 'reset' }">
                   Forgot Password?
                 </v-btn>
               </v-col>

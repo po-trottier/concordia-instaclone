@@ -85,7 +85,6 @@ import isEmail from 'is-email';
 
 export default {
   name: 'ForgotPasword',
-
   data() {
     return {
       progress: false,
@@ -98,9 +97,7 @@ export default {
       ],
     };
   },
-
   methods: {
-
     sendResetEmail() {
       this.progress = true;
       this.$firebase.auth().sendPasswordResetEmail(this.email).then(() => {
