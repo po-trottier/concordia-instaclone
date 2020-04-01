@@ -24,7 +24,7 @@
               Troube Logging In?
             </h3>
             <h4
-              class="text-center mb-3"
+              class="text-center mb-6"
               style="color: grey">
               Enter your username or email and we'll send you a link to get back into your account.
             </h4>
@@ -44,21 +44,18 @@
               :loading="progress"
               type="submit"
               color="primary">
-              Send Login Link
+              Reset Password
             </v-btn>
-            <v-card-actions>
-              <v-col>
-                <v-btn
-                  :to="{ name: 'landing' }"
-                  exact
-                  block
-                  text
-                  class="mt-4">
-                  Go Back
-                </v-btn>
-              </v-col>
-            </v-card-actions>
           </v-card-text>
+          <v-card-actions>
+            <v-btn
+              :to="{ name: 'landing' }"
+              exact
+              block
+              text>
+              Go Back
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-form>
     </v-row>

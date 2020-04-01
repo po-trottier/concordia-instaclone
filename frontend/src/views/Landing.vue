@@ -81,6 +81,14 @@
             <v-card-actions class="pt-0">
               <v-col class="text-center">
                 <v-btn
+                  block
+                  text
+                  rounded
+                  class="mb-4 text-none"
+                  :to="{ name: 'reset' }">
+                  Forgot your password?
+                </v-btn>
+                <v-btn
                   large
                   block
                   depressed
@@ -93,20 +101,13 @@
                   Sign In
                 </v-btn>
                 <v-btn
-                  large
                   block
-                  text
+                  large
+                  outlined
                   rounded
+                  color="primary"
                   :to="{ name: 'signup' }">
                   Create an Account
-                </v-btn>
-                <v-btn
-                  large
-                  block
-                  text
-                  rounded
-                  :to="{ name: 'reset' }">
-                  Forgot Password?
                 </v-btn>
               </v-col>
             </v-card-actions>
@@ -175,14 +176,14 @@ export default {
             })
             .catch((err) => {
               this.fbProgress = false;
+              this.error = err.message;
               this.snackbar = true;
-              console.error(err);
             });
         })
         .catch((err) => {
           this.fbProgress = false;
+          this.error = err.message;
           this.snackbar = true;
-          console.error(err);
         });
     },
 
@@ -199,14 +200,14 @@ export default {
             })
             .catch((err) => {
               this.googleProgress = false;
+              this.error = err.message;
               this.snackbar = true;
-              console.error(err);
             });
         })
         .catch((err) => {
           this.googleProgress = false;
+          this.error = err.message;
           this.snackbar = true;
-          console.error(err);
         });
     },
 
@@ -225,14 +226,14 @@ export default {
             })
             .catch((err) => {
               this.progress = false;
+              this.error = err.message;
               this.snackbar = true;
-              console.error(err);
             });
         })
         .catch((err) => {
           this.progress = false;
+          this.error = err.message;
           this.snackbar = true;
-          console.error(err);
         });
     },
 
