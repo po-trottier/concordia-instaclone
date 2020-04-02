@@ -1,4 +1,4 @@
-Feature: Instaclone Login Page
+Feature: Instaclone Login
     In order to access the Instaclone application
     As a user
     I want to login to my account
@@ -35,6 +35,13 @@ Feature: Instaclone Login Page
         Given I have already signed in my Instaclone account
         When I navigate to the Instaclone landing page
         Then I should be automatically redirected to the Instaclone feed page
+
+    Scenario: Attempt to enter invalid account credentials
+        Given I have navigated to the Instaclone landing page
+        And I entered an invalid email in the "Email" text field
+        And I entered an invalid password in the "Password" text field
+        When I click on the "Sign In" button
+        Then I should see the message "The password is invalid or the user does not have a password."
 
     Scenario: Reset an existing account password
         Given I have navigated to the Instaclone landing page
