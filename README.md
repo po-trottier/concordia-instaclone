@@ -46,6 +46,13 @@ This project is meant to be an Instagram clone and was created for Concordia's S
 |If you click on a post's image|You should be brought to that post's details page where you can see the comments on that post|
 |On the feed, if you click on the user name or image|You should be brought to that user profile page.|
 |Wherever on the app, if you click on the instagram logo in the banner|You should be brought to the user feed.|
+|Options for SignIn with Facebook and Google are Available |You should be able to SignIn with a brand new profile when it's your first time logging in.|
+|If you click on on the profile icon|You should be brought to the user unique profile page.|
+|If you click on the edit profile button|The user should be directed to the user profile information and should be able to edit the information.|
+|A suggested account list is available on the feed|Suggested accounts can be directly followed with a follow button and the user following counter goes up.|
+|Clicking on the "New Post" button |You should be brought to the "new post page" where you will be able to add a picutre and a picture description.|
+
+
 
 
 
