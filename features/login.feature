@@ -32,7 +32,7 @@ Feature: Instaclone Login
         But I will not be signed in to my Instaclone account
 
     Scenario: Credentials saved from a past session
-        Given I have already signed in my Instaclone account
+        Given I have signed in to my Instaclone account
         When I navigate to the Instaclone landing page
         Then I should be automatically redirected to the Instaclone feed page
 

@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <v-container class="pt-10 mb-12">
