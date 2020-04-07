@@ -1,7 +1,7 @@
 Feature: Instaclone Profile
-    In order to access the Instaclone application
+    In order to use the Instaclone application
     As a user
-    I want to create and use my user profile
+    I want to customize my user profile and view other profiles
 
     Scenario: Create a new user profile
         Given I have navigated to the Instaclone landing page
