@@ -7,9 +7,7 @@
         Suggested Accounts
       </h3>
       <v-divider class="my-3" />
-      <v-list
-        v-if="getSuggested.length > 0"
-        class="pa-0 mt-n2">
+      <v-list v-if="getSuggested.length > 0">
         <app-suggested-item
           v-for="suggested in getSuggested"
           :key="suggested.uid"

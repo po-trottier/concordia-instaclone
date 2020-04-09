@@ -37,11 +37,12 @@ export default {
         return;
       }
       this.loading = true;
+      const query = val.toLowerCase().trim();
       // Lazily load input items
       this.$firebase.firestore().collection('users')
         .orderBy('username')
-        .startAt(val)
-        .endAt(`${val}\uf8ff`)
+        .startAt(query)
+        .endAt(`${query}\uf8ff`)
         .get()
         .then((snapshot) => {
           const users = [];

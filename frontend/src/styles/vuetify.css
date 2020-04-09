@@ -7,6 +7,10 @@
   transition: ease 0.3s;
 }
 
+.v-list {
+  padding: 0;
+}
+
 .theme--light.v-divider {
   border-color: #dbdbdb !important;
 }
